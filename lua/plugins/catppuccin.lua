@@ -5,12 +5,6 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			flavor = "mocha",
-			-- custom_highlights = function(colors)
-			-- 	return {
-			-- 		Comment = { fg = "#1aff1a" },
-			-- 		TabLineSel = { bg = colors.pink },
-			-- 	}
-			-- end,
 		})
 		vim.cmd.colorscheme("catppuccin")
 		-- Delay applying highlights slightly to ensure they take effect

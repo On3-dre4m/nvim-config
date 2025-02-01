@@ -43,7 +43,7 @@ return {
 					--{ name = 'vsnip' }, -- For vsnip users.
 					{ name = "luasnip" }, -- For luasnip users.
 					{ name = "buffer" },
-					-- { name = "path" },
+					{ name = "path" },
 					-- { name = 'ultisnips' }, -- For ultisnips users.
 					-- { name = 'snippy' }, -- For snippy users.
 				}),

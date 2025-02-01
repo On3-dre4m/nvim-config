@@ -30,6 +30,8 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false -- Keep folds closed by default
 vim.opt.foldlevel = 99 -- Open all folds by default
 
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff" })
+
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })

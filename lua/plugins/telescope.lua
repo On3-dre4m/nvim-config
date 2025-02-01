@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
-		dependencies = { "nvim-lua/plenary.nvim", "scottmckendry/telescope-resession.nvim" },
+		dependencies = { "nvim-lua/plenary.nvim", "scottmckendry/telescope-resession.nvim", "sharkdp/fd" },
 		config = function()
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })

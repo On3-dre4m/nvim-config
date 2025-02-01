@@ -41,7 +41,11 @@ return {
 				cpp = { "cpplint" },
 				python = { "ruff" },
 			}
-			-- require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
+			require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
+
+			require("lint").linters.cpplint.args = {
+				"--filter=-build/include_order,-build/include_subdir,-build/include_what_you_use",
+			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave", "TextChanged" }, {
@@ -51,7 +55,7 @@ return {
 				end,
 			})
 
-			vim.keymap.set("n", "<leader>l", function()
+			vim.keymap.set("n", "<leader>L", function()
 				lint.try_lint()
 			end, { desc = "Trigger [L]inter for current file" })
 		end,

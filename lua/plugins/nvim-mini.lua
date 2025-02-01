@@ -9,15 +9,17 @@ return {
 			require("mini.operators").setup({})
 			require("mini.pairs").setup({})
 			require("mini.comment").setup({})
-
 			-- NOTE: Workflow
+
 			require("mini.move").setup({})
 
 			-- NOTE: Appearance
 
 			require("mini.notify").setup()
 
-			require("mini.animate")
+			require("mini.animate").setup({
+				scroll = { enable = false },
+			})
 			-- Add custom behavior for Tab to exit pairs
 			vim.keymap.set("i", "<Tab>", function()
 				local col = vim.fn.col(".")

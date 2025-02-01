@@ -30,10 +30,15 @@ return {
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify", -- Optional
+			{
+				"rcarriga/nvim-notify",
+			}, -- Optional
 		},
+
 		config = function()
 			require("noice").setup({
+				-- You can enable a preset for easier configuration
+
 				lsp = {
 					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 					override = {
@@ -42,14 +47,15 @@ return {
 						["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
 					},
 				},
-				-- you can enable a preset for easier configuration
+
 				presets = {
-					bottom_search = true, -- use a classic bottom cmdline for search
+					bottom_search = false, -- use a classic bottom cmdline for search
 					command_palette = true, -- position the cmdline and popupmenu together
 					long_message_to_split = true, -- long messages will be sent to a split
 					inc_rename = false, -- enables an input dialog for inc-rename.nvim
-					lsp_doc_border = false, -- add a border to hover docs and signature help
+					lsp_doc_border = true, -- add a border to hover docs and signature help
 				},
+
 				-- TODO: Customize the notifications
 				message = {
 					-- Messages shown by lsp servers
@@ -57,10 +63,18 @@ return {
 					view = "notify",
 					opts = {},
 				},
+
+				--Keymap for noice
+				vim.keymap.set(
+					"n",
+					"<leader>nd",
+					":NoiceDismiss<CR>",
+					{ silent = true, desc = "[N]otification [D]ismiss" }
+				),
 			}) -- Enable LSP message handling
 			require("notify").setup({
 				stages = "fade_in_slide_out", -- Animation style
-				timeout = 8000, -- Time in milliseconds before notification disappears
+				timeout = 9000, -- Time in milliseconds before notification disappears
 				render = "default", -- Minimal UI for notifications
 				fps = 60, -- Smooth animations
 				background_colour = "#1e222a", -- Match your theme

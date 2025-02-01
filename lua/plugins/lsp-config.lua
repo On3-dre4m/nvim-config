@@ -24,6 +24,21 @@ return {
 			local lspconfig = require("lspconfig")
 			-- local util = require("lspconfig.util")
 
+			local border = {
+				{ "╭", "FloatBorder" },
+				{ "─", "FloatBorder" },
+				{ "╮", "FloatBorder" },
+				{ "│", "FloatBorder" },
+				{ "╯", "FloatBorder" },
+				{ "─", "FloatBorder" },
+				{ "╰", "FloatBorder" },
+				{ "│", "FloatBorder" },
+			}
+
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = border,
+				padding = { 2, 2 },
+			})
 			--Where to add LSP for Language
 			lspconfig.lua_ls.setup({
 				settings = {
@@ -54,7 +69,10 @@ return {
 
 			lspconfig.clangd.setup({
 
-				cmd = { "clangd" },
+				cmd = {
+					"clangd",
+				},
+
 				capabilities = capabilities,
 			})
 			lspconfig.csharp_ls.setup({ capabilities = capabilities })
@@ -70,17 +88,17 @@ return {
 						},
 					},
 				},
-				{ capabilities = capabilities },
+				capabilities = capabilities,
 			})
-
 			--Set keymap for hover function
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", function()
 				-- vim.cmd("vsplit")
 				-- vim.cmd("wincmd l")
 				vim.lsp.buf.definition()
-			end, { silent = true })
+			end, { silent = true, desc = "[G]oto [D]efinition" })
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show [C]ode [A]ction" })
+			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "show [G]oto [R]eference" })
 			--vim.keymap.set()
 		end,
 	},
