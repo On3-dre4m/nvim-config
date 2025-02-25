@@ -120,6 +120,18 @@ return {
 				":BufferLinePickClose<CR>",
 				{ silent = true, desc = "[C]lose [C]urrent Buffer Line" }
 			)
+			vim.keymap.set(
+				"n",
+				"<leader>lm",
+				":BufferLineCycleNext<CR>",
+				{ silent = true, desc = "Buffer [L]ine Cycle [N]ext" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>ln",
+				":BufferLineCyclePrev<CR>",
+				{ silent = true, desc = "Buffer [L]ine Cycle [P]revious" }
+			)
 		end,
 	},
 }
