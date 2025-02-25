@@ -11,6 +11,8 @@ return {
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind [B]uffer" })
 			vim.keymap.set("n", "<leader>fn", ":Noice telescope<CR>", { desc = "[F]ind [N]oice history" })
 
+			-- require("myplugins.multigrep").setup()
+
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
 				-- You can pass additional configuration to Telescope to change the theme, layout, etc.

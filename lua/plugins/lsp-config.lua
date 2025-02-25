@@ -92,11 +92,7 @@ return {
 			})
 			--Set keymap for hover function
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gd", function()
-				-- vim.cmd("vsplit")
-				-- vim.cmd("wincmd l")
-				vim.lsp.buf.definition()
-			end, { silent = true, desc = "[G]oto [D]efinition" })
+			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { silent = true, desc = "[G]oto [D]efinition" })
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show [C]ode [A]ction" })
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "show [G]oto [R]eference" })
 			--vim.keymap.set()
