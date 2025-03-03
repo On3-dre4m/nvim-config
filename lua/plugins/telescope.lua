@@ -9,6 +9,7 @@ return {
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [G]rep" })
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [T]ags" })
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind [B]uffer" })
+			vim.keymap.set("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", { desc = "[F]ind [S]ymbols" })
 			vim.keymap.set("n", "<leader>fn", ":Noice telescope<CR>", { desc = "[F]ind [N]oice history" })
 
 			-- require("myplugins.multigrep").setup()
