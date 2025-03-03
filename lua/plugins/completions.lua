@@ -9,6 +9,9 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 		},
+		config = function()
+			require("myplugins.custom_snippets")
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -43,7 +46,7 @@ return {
 					--{ name = 'vsnip' }, -- For vsnip users.
 					{ name = "luasnip" }, -- For luasnip users.
 					{ name = "buffer" },
-					{ name = "path" },
+					-- { name = "path" },
 					-- { name = 'ultisnips' }, -- For ultisnips users.
 					-- { name = 'snippy' }, -- For snippy users.
 				}),

@@ -74,6 +74,13 @@ return {
 				},
 
 				capabilities = capabilities,
+
+				-- on_attach = function(client)
+				-- 	-- Suppress unused variable warnings
+				-- 	client.config.flags = client.config.flags or {}
+				-- 	client.config.flags.allow_incremental_sync = true
+				-- 	client.config.flags.disable_lsp_diagnostics = true
+				-- end,
 			})
 			lspconfig.csharp_ls.setup({ capabilities = capabilities })
 
