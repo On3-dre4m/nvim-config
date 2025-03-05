@@ -45,6 +45,7 @@ return {
 					{ name = "nvim_lsp" },
 					--{ name = 'vsnip' }, -- For vsnip users.
 					{ name = "luasnip" }, -- For luasnip users.
+					{ name = "copilot", group_index = 2 },
 					{ name = "buffer" },
 					-- { name = "path" },
 					-- { name = 'ultisnips' }, -- For ultisnips users.

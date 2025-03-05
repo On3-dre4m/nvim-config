@@ -32,6 +32,13 @@ vim.opt.foldlevel = 99 -- Open all folds by default
 
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff" })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		vim.opt.conceallevel = 2
+	end,
+})
+
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
@@ -58,8 +65,8 @@ vim.keymap.set("n", "<leader>to", ":tabnew<CR>", {}) -- open new tab
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", {}) -- close current tab
 
 -- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", {}) -- split window vertically
-vim.keymap.set("n", "<leader>h", "<C-w>s", {}) -- split window horizontally
+vim.keymap.set("n", "<leader>v", "<C-w>v<C-w><C-l>", {}) -- split window vertically
+vim.keymap.set("n", "<leader>h", "<C-w>s<C-w><C-j>", {}) -- split window horizontally
 vim.keymap.set("n", "<leader>wx", ":close<CR>", {}) -- close current split windows
 
 -- Stay in indent mode

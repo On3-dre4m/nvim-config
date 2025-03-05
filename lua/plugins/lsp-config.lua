@@ -97,6 +97,11 @@ return {
 				},
 				capabilities = capabilities,
 			})
+
+			lspconfig.ltex.setup({
+				capabilities = capabilities,
+			})
+
 			--Set keymap for hover function
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { silent = true, desc = "[G]oto [D]efinition" })

@@ -14,5 +14,13 @@ vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
 require("vim-options")
-require("lazy").setup("plugins")
+require("vim-templates")
+require("lazy").setup({
+	spec = {
+		-- add LazyVim and import its plugins
+		{ "LazyVim/LazyVim" },
+		-- import/override with your plugins
+		{ import = "plugins" },
+	},
+})
 require("myplugins.floater")
