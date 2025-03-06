@@ -10,6 +10,7 @@ return {
 					c = { "clang_format" },
 					cpp = { "clang_format" },
 					python = { "isort", "black" },
+					markdown = { "prettier" },
 				},
 				format_on_save = {
 					lsp_fallback = true,
@@ -40,7 +41,7 @@ return {
 				c = { "cpplint" },
 				cpp = { "cpplint" },
 				python = { "ruff" },
-				markdown = { "vale" },
+				-- markdown = { "vale" },
 			}
 			require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
 

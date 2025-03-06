@@ -39,8 +39,7 @@ return {
 					opts = { buffer = true, expr = true },
 				},
 			},
-
-			-- ui = { enable = false },
+			ui = { enable = false },
 			disable_frontmatter = true,
 		},
 	},
@@ -52,5 +51,28 @@ return {
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+		opts = {},
+		config = function()
+			require("render-markdown").setup({
+				dash = {
+					enabled = false,
+				},
+				heading = {
+					width = "block",
+					left_pad = 2,
+					right_pad = 4,
+				},
+				code = {
+					sign = false,
+					width = "block",
+					left_pad = 2,
+					right_pad = 4,
+				},
+			})
+		end,
 	},
 }
