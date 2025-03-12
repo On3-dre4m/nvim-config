@@ -63,6 +63,7 @@ vim.keymap.set("n", "x", '"_x', {})
 -- Tabs
 vim.keymap.set("n", "<leader>to", ":tabnew<CR>", {}) -- open new tab
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", {}) -- close current tab
+vim.keymap.set("n", "<leader>tn", ":tabnext<CR>", {}) -- close current tab
 
 -- Window management
 vim.keymap.set("n", "<leader>v", "<C-w>v<C-w><C-l>", {}) -- split window vertically

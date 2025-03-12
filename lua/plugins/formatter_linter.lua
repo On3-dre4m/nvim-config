@@ -12,6 +12,13 @@ return {
 					python = { "isort", "black" },
 					markdown = { "prettier" },
 				},
+				formatters = {
+					clang_format = {
+						prepend_args = {
+							"--style={BreakBeforeBinaryOperators: None, BreakBeforeBraces: Attach, AllowShortFunctionsOnASingleLine: None, ColumnLimit: 0, IndentWidth: 4, PenaltyBreakAssignment: 100, PenaltyBreakString: 100}",
+						},
+					},
+				},
 				format_on_save = {
 					lsp_fallback = true,
 					async = false,
