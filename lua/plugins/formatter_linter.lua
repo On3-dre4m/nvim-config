@@ -53,7 +53,7 @@ return {
 			require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
 
 			require("lint").linters.cpplint.args = {
-				"--filter=-build/header_guard,-build/include_order,-build/include_subdir,-build/include_what_you_use,-legal/copyright,-whitespace/blank_line,-whitespace/parens,-whitespace/comma,-whitespace/semicolon,-whitespace/line_length,-whitespace/braces, -whitespace/indent, -whitespace/operators,-whitespace/comments,-readibility/alt_tokens",
+				"--filter=-build/header_guard,-build/include_order,-build/include_subdir,-build/include_what_you_use,-legal/copyright,-whitespace/blank_line,-whitespace/parens,-whitespace/comma,-whitespace/semicolon,-whitespace/line_length,-whitespace/braces, -whitespace/indent, -whitespace/operators,-whitespace/comments,-whitespace/tab,-readibility/alt_tokens,-readability/multiline_comment",
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
