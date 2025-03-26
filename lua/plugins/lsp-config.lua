@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "ruff" },
+				ensure_installed = { "lua_ls", "clangd", "ruff", "ltex", "pylsp" },
 			})
 		end,
 	},
@@ -99,6 +99,28 @@ return {
 			})
 
 			lspconfig.ltex.setup({
+				on_attach = function(client, bufnr)
+					-- Check if the current file is a markdown file
+					local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+
+					-- If the filetype is 'markdown', disable LTeX features (optional)
+					if ft == "markdown" then
+						client.stop() -- Stop the LTeX server for markdown files
+					end
+				end,
+				settings = {
+					ltex = {
+						language = "en-US",
+						lint = {
+							enabled = true, -- Disable all linting
+							disable = { "MD_BE_NON_VBP", "MORFOLOGIK_RULE_EN_US" },
+						},
+					},
+				},
+				capabilities = capabilities,
+			})
+
+			lspconfig.texlab.setup({
 				capabilities = capabilities,
 			})
 

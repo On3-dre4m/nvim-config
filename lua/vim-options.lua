@@ -32,6 +32,12 @@ vim.opt.foldlevel = 99 -- Open all folds by default
 
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff" })
 
+vim.keymap.set("n", "<leader>cs", function()
+	vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
+	vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
+	vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
+end, { desc = "Highlight current cursor" })
+
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "markdown",
 	callback = function()

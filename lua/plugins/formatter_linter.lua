@@ -11,12 +11,16 @@ return {
 					cpp = { "clang_format" },
 					python = { "isort", "black" },
 					markdown = { "prettier" },
+					tex = { "latexindent" },
 				},
 				formatters = {
 					clang_format = {
 						prepend_args = {
 							"--style={BreakBeforeBinaryOperators: None, BreakBeforeBraces: Attach, AllowShortFunctionsOnASingleLine: None, ColumnLimit: 0, IndentWidth: 4, PenaltyBreakAssignment: 100, PenaltyBreakString: 100}",
 						},
+					},
+					latexindent = {
+						prepend_args = {},
 					},
 				},
 				format_on_save = {
@@ -48,9 +52,9 @@ return {
 				c = { "cpplint" },
 				cpp = { "cpplint" },
 				python = { "ruff" },
-				-- markdown = { "vale" },
 			}
 			require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
+			-- require("lint.linters.vale").cmd = vim.fn.stdpath("data") .. "/mason/bin/vale"
 
 			require("lint").linters.cpplint.args = {
 				"--filter=-build/header_guard,-build/include_order,-build/include_subdir,-build/include_what_you_use,-legal/copyright,-whitespace/blank_line,-whitespace/parens,-whitespace/comma,-whitespace/semicolon,-whitespace/line_length,-whitespace/braces, -whitespace/indent, -whitespace/operators,-whitespace/comments,-whitespace/tab,-readibility/alt_tokens,-readability/multiline_comment",
@@ -67,6 +71,17 @@ return {
 			vim.keymap.set("n", "<leader>L", function()
 				lint.try_lint()
 			end, { desc = "Trigger [L]inter for current file" })
+		end,
+	},
+	{
+		"dense-analysis/ale",
+		config = function()
+			-- Configuration goes here.
+			local g = vim.g
+
+			g.ale_linters = {
+				tex = { "chktex", "vale" },
+			}
 		end,
 	},
 }
