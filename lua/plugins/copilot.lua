@@ -11,14 +11,8 @@ return {
 			panel = { enabled = false },
 			filetypes = {
 				markdown = true,
+				help = true,
 			},
 		},
-	},
-	{
-		"zbirenbaum/copilot-cmp",
-		dependencies = { "zbirenbaum/copilot.lua" },
-		config = function()
-			require("copilot_cmp").setup()
-		end,
 	},
 }
