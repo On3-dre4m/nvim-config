@@ -16,11 +16,12 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
+			-- "hrsh7th/cmp-nvim-lsp",
 		},
 
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
 			-- local util = require("lspconfig.util")
 
@@ -74,13 +75,6 @@ return {
 				},
 
 				capabilities = capabilities,
-
-				-- on_attach = function(client)
-				-- 	-- Suppress unused variable warnings
-				-- 	client.config.flags = client.config.flags or {}
-				-- 	client.config.flags.allow_incremental_sync = true
-				-- 	client.config.flags.disable_lsp_diagnostics = true
-				-- end,
 			})
 			lspconfig.csharp_ls.setup({ capabilities = capabilities })
 
