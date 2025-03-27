@@ -93,7 +93,15 @@ return {
 				gdbTarget = "localhost:3333",
 				cwd = "${workspaceFolder}",
 				executable = function()
-					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+					-- Automatically find the .elf file in the build folder
+					local elf_file = vim.fn.glob(vim.fn.getcwd() .. "/build/*.elf")
+
+					-- If a file is found, return its path; otherwise, prompt the user
+					if elf_file ~= "" then
+						return elf_file
+					else
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+					end
 				end,
 				configFiles = {
 					-- "/usr/share/openocd/scripts/interface/stlink.cfg", -- Interface config for ST-Link

@@ -1,4 +1,6 @@
 vim.cmd("set expandtab")
+vim.cmd("set encoding=utf-8")
+vim.cmd("set fileencoding=utf-8")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
