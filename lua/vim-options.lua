@@ -33,6 +33,8 @@ vim.opt.foldenable = false -- Keep folds closed by default
 vim.opt.foldlevel = 99 -- Open all folds by default
 
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff" })
+-- Set Lazy.nvim timeout to 0 (no timeout)
+vim.g.lazy_timeout = 0
 
 vim.keymap.set("n", "<leader>cs", function()
 	vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
@@ -54,10 +56,10 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Resize with arrows
-vim.keymap.set("n", "<Up>", ":resize -2<CR>", {})
-vim.keymap.set("n", "<Down>", ":resize +2<CR>", {})
-vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", {})
-vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", {})
+-- vim.keymap.set("n", "<Up>", ":resize -2<CR>", {})
+-- vim.keymap.set("n", "<Down>", ":resize +2<CR>", {})
+-- vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", {})
+-- vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", {})
 
 -- save file
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", {})

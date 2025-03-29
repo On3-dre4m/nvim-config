@@ -19,6 +19,7 @@ return {
 				dependencies = { "nvim-lua/plenary.nvim" },
 			},
 			"moyiz/blink-emoji.nvim",
+			"Kaiser-Yang/blink-cmp-avante",
 		},
 
 		-- use a release tag to download pre-built binaries
@@ -83,12 +84,12 @@ return {
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lsp", "path", "snippets", "copilot", "buffer", "dictionary", "emoji" },
+				default = { "lsp", "path", "snippets", "copilot", "buffer", "dictionary", "emoji", "avante" },
 				providers = {
 					copilot = {
 						name = "copilot",
 						module = "blink-cmp-copilot",
-						score_offset = -100,
+						score_offset = 999,
 						async = true,
 					},
 					cmdline = {
@@ -130,6 +131,13 @@ return {
 								vim.o.filetype
 							)
 						end,
+					},
+					avante = {
+						module = "blink-cmp-avante",
+						name = "Avante",
+						opts = {
+							-- options for blink-cmp-avante
+						},
 					},
 				},
 			},
