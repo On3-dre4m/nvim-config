@@ -1,4 +1,6 @@
 vim.cmd("set expandtab")
+vim.cmd("set encoding=utf-8")
+vim.cmd("set fileencoding=utf-8")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -31,6 +33,21 @@ vim.opt.foldenable = false -- Keep folds closed by default
 vim.opt.foldlevel = 99 -- Open all folds by default
 
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff" })
+-- Set Lazy.nvim timeout to 0 (no timeout)
+vim.g.lazy_timeout = 0
+
+vim.keymap.set("n", "<leader>cs", function()
+	vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
+	vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
+	vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
+end, { desc = "Highlight current cursor" })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		vim.opt.conceallevel = 2
+	end,
+})
 
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
@@ -39,10 +56,10 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Resize with arrows
-vim.keymap.set("n", "<Up>", ":resize -2<CR>", {})
-vim.keymap.set("n", "<Down>", ":resize +2<CR>", {})
-vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", {})
-vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", {})
+-- vim.keymap.set("n", "<Up>", ":resize -2<CR>", {})
+-- vim.keymap.set("n", "<Down>", ":resize +2<CR>", {})
+-- vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", {})
+-- vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", {})
 
 -- save file
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", {})
@@ -56,10 +73,11 @@ vim.keymap.set("n", "x", '"_x', {})
 -- Tabs
 vim.keymap.set("n", "<leader>to", ":tabnew<CR>", {}) -- open new tab
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", {}) -- close current tab
+vim.keymap.set("n", "<leader>tn", ":tabnext<CR>", {}) -- close current tab
 
 -- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", {}) -- split window vertically
-vim.keymap.set("n", "<leader>h", "<C-w>s", {}) -- split window horizontally
+vim.keymap.set("n", "<leader>v", "<C-w>v<C-w><C-l>", {}) -- split window vertically
+vim.keymap.set("n", "<leader>h", "<C-w>s<C-w><C-j>", {}) -- split window horizontally
 vim.keymap.set("n", "<leader>wx", ":close<CR>", {}) -- close current split windows
 
 -- Stay in indent mode

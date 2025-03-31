@@ -4,6 +4,10 @@
     ],
     "diagnostics.disable": [
         "trailing-space",
-        "missing-fields"
+        "missing-fields",
+        "unused-local",
+        "undefined-doc-name",
+        "deprecated",
+        "undefined-field"
     ]
 }

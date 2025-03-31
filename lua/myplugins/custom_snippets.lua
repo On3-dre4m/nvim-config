@@ -8,14 +8,27 @@ local fmt = require("luasnip.extras.fmt").fmt
 local c = ls.text_node
 local f = ls.function_node
 
+-- Function to get the current date in the desired format
+
+local function get_current_date()
+	return os.date("%B, %Y") -- e.g., "March 5, 2025"
+end
+
+--
 ls.add_snippets("all", {
 
 	s(
 		"header",
 		fmt(
 			[[
-#ifndef __{}
-#define __{}
+/*
+ * {}
+ * 
+ *  Created on: {}
+ *      Author: {}
+ */
+#ifndef __{}__
+#define __{}__
 
 #ifdef __cplusplus
 extern "C" {{
@@ -27,48 +40,101 @@ extern "C" {{
 }}
 #endif
 
-#endif // __{}
+#endif // __{}__
                 ]],
 			{
-				i(1, "HEADER_NAME"),
-				rep(1),
-				i(2),
-				rep(1),
+				-- Automatically get the file name
+				f(function()
+					return vim.api.nvim_eval('expand("%:t")')
+				end), -- Placeholder for the file name
+				get_current_date(), -- Current date
+				i(1, "PhatLe"), -- Placeholder for the author's name (user input)
+				i(2, "HEADER_NAME"), -- Repeat the file name for include guard
+				rep(2), -- Repeat the file name for include guard
+				i(3), -- Placeholder for additional content (user input)
+				rep(2), -- Repeat the file name for include guard
 			}
 		)
 	),
 })
 
+--
 ls.add_snippets("all", {
 
 	s(
 		"header_hw",
 		fmt(
 			[[
-#ifndef __HW_CONFIG_H
-#define __HW_CONFIG_H
+/*
+ * {}
+ * 
+ *  Created on: {}
+ *      Author: {}
+ */
 
-// Timer and PWM
+#ifndef __HW_CONFIG_H__
+#define __HW_CONFIG_H__
 
-// ISR
+/* Timer and PWM */
+{}
 
-// ADC
+/* ISR */
 
-//  DRV Gate
 
-// Encoder
+/* ADC */
 
-// Misc GPIO
 
-// CAN
+/* DRV Gate */
 
-// Hardware constants
 
-// Current controller
+/* Encoder */
 
-#endif // __HW_CONFIG_H
+
+/* Misc GPIO */
+
+
+/* CAN */
+
+
+/* Hardware constants */
+
+
+/* Current controller */
+
+
+#endif // __HW_CONFIG_H__
 ]],
-			{}
+			{
+				f(function()
+					return vim.api.nvim_eval('expand("%:t")')
+				end), -- Placeholder for the file name
+				get_current_date(), -- Current date
+				"PhatLe", -- Placeholder for the author's name (user input)
+				i(1),
+			}
+		)
+	),
+})
+
+ls.add_snippets("all", {
+	s(
+		"copyright_C",
+		fmt(
+			[[
+/*
+ * {}
+ * 
+ *  Created on: {}
+ *      Author: {}
+ */
+        ]],
+			{
+				f(function()
+					return vim.api.nvim_eval('expand("%:t")')
+				end), -- Placeholder for the file name
+				get_current_date(), -- Current date
+				"PhatLe", -- Placeholder for the author's name (user input)
+			}
 		)
 	),
 })

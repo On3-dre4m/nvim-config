@@ -9,18 +9,19 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "ruff" },
+				ensure_installed = { "lua_ls", "clangd", "ruff", "ltex", "pylsp" },
 			})
 		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
+			-- "hrsh7th/cmp-nvim-lsp",
 		},
 
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
 			-- local util = require("lspconfig.util")
 
@@ -74,13 +75,6 @@ return {
 				},
 
 				capabilities = capabilities,
-
-				-- on_attach = function(client)
-				-- 	-- Suppress unused variable warnings
-				-- 	client.config.flags = client.config.flags or {}
-				-- 	client.config.flags.allow_incremental_sync = true
-				-- 	client.config.flags.disable_lsp_diagnostics = true
-				-- end,
 			})
 			lspconfig.csharp_ls.setup({ capabilities = capabilities })
 
@@ -97,6 +91,37 @@ return {
 				},
 				capabilities = capabilities,
 			})
+
+			lspconfig.ltex.setup({
+				on_attach = function(client, bufnr)
+					-- Check if the current file is a markdown file
+					local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+
+					-- If the filetype is 'markdown', disable LTeX features (optional)
+					if ft == "markdown" then
+						client.stop() -- Stop the LTeX server for markdown files
+					end
+				end,
+				settings = {
+					ltex = {
+						language = "en-US",
+						lint = {
+							enabled = true, -- Disable all linting
+							disable = { "MD_BE_NON_VBP", "MORFOLOGIK_RULE_EN_US" },
+						},
+					},
+				},
+				capabilities = capabilities,
+			})
+
+			lspconfig.texlab.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.markdown_oxide.setup({
+				capabilities = capabilities,
+			})
+
 			--Set keymap for hover function
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { silent = true, desc = "[G]oto [D]efinition" })

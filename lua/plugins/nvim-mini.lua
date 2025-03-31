@@ -27,7 +27,7 @@ return {
 				local char = line:sub(col, col)
 
 				-- Define the characters to jump out of
-				local closers = { ")", "]", "}", "'", '"', "`", ">" }
+				local closers = { ")", "]", "}", "'", '"', "`", ">", ";", "," }
 
 				-- If cursor is on a closing character, move it one step to the right
 				if vim.tbl_contains(closers, char) then

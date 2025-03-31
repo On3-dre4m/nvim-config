@@ -10,6 +10,18 @@ return {
 					c = { "clang_format" },
 					cpp = { "clang_format" },
 					python = { "isort", "black" },
+					markdown = { "prettier" },
+					tex = { "latexindent" },
+				},
+				formatters = {
+					clang_format = {
+						prepend_args = {
+							"--style={BreakBeforeBinaryOperators: None, BreakBeforeBraces: Attach, AllowShortFunctionsOnASingleLine: None, ColumnLimit: 0, IndentWidth: 4, PenaltyBreakAssignment: 100, PenaltyBreakString: 100}",
+						},
+					},
+					latexindent = {
+						prepend_args = {},
+					},
 				},
 				format_on_save = {
 					lsp_fallback = true,
@@ -27,7 +39,6 @@ return {
 			end, { desc = "[F]ormat the code" })
 		end,
 	},
-
 	{
 		"mfussenegger/nvim-lint",
 		event = {
@@ -42,9 +53,10 @@ return {
 				python = { "ruff" },
 			}
 			require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
+			-- require("lint.linters.vale").cmd = vim.fn.stdpath("data") .. "/mason/bin/vale"
 
 			require("lint").linters.cpplint.args = {
-				"--filter=-build/header_guard,-build/include_order,-build/include_subdir,-build/include_what_you_use,-legal/copyright,-whitespace/blank_line,-whitespace/parens,-whitespace/comma,-whitespace/semicolon,-whitespace/line_length,-whitespace/braces, -whitespace/indent, -whitespace/operators, -readibility/alt_tokens",
+				"--filter=-build/header_guard,-build/include,-build/include_order,-build/include_subdir,-build/include_what_you_use,-legal/copyright,-whitespace/blank_line,-whitespace/parens,-whitespace/comma,-whitespace/semicolon,-whitespace/line_length,-whitespace/braces,-whitespace/indent,-whitespace/operators,-whitespace/comments,-whitespace/tab,-readibility/alt_tokens,-readability/multiline_comment",
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
