@@ -17,7 +17,7 @@ return {
 			},
 
 			notes_subdir = "Fleeting Notes",
-			new_notes_location = "notes_subdir",
+			new_notes_location = "current_dir",
 
 			templates = {
 				folder = "1. RESOURCE/Template",
@@ -39,7 +39,20 @@ return {
 					opts = { buffer = true, expr = true },
 				},
 			},
+
+			attachments = {
+				img_folder = "1. RESOURCE/Pics",
+			},
 			ui = { enable = false },
+
+			wiki_link_func = "use_alias_only",
+
+			follow_url_func = function(url)
+				-- Open the URL in the default web browser.
+				vim.fn.jobstart({ "xdg-open", url }) -- linux
+				-- vim.ui.open(url) -- need Neovim 0.10.0+
+			end,
+
 			disable_frontmatter = true,
 		},
 	},
@@ -49,6 +62,8 @@ return {
 		build = "cd app && npm install",
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
+			vim.g.mkdp_images_as_root = 1
+			vim.g.mkdp_images_path = "/mnt/E_Drive/Workplace/Obsidian/Vault/1. RESOURCE/Pics" -- Corrected path format
 		end,
 		ft = { "markdown" },
 	},

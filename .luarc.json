@@ -7,6 +7,7 @@
         "missing-fields",
         "unused-local",
         "undefined-doc-name",
-        "deprecated"
+        "deprecated",
+        "undefined-field"
     ]
 }
