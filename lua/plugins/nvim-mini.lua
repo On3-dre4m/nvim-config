@@ -12,6 +12,10 @@ return {
 			-- NOTE: Workflow
 
 			require("mini.move").setup({})
+			require("mini.files").setup({})
+			vim.keymap.set("n", "<leader>q", function()
+				require("mini.files").open()
+			end, { desc = "Open Mini Files" })
 
 			-- NOTE: Appearance
 

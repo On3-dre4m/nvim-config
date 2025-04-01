@@ -52,9 +52,38 @@ return {
 				vim.fn.jobstart({ "xdg-open", url }) -- linux
 				-- vim.ui.open(url) -- need Neovim 0.10.0+
 			end,
+			daily_notes = {
+				folder = "3. Journal/Daily",
+				date_format = "%Y-%m-%d",
+				default_tags = { "Log/DailyLog" },
+				template = "Daily Note",
+			},
 
 			disable_frontmatter = true,
 		},
+		config = function(_, opts)
+			require("obsidian").setup(opts)
+			vim.keymap.set(
+				"n",
+				"<leader>nn",
+				"<cmd>ObsidianTOC<cr>",
+				{ silent = true, desc = "Obsidian: Table of Content" }
+			)
+
+			vim.keymap.set(
+				"n",
+				"<leader>nt",
+				"<cmd>ObsidianTemplate<cr>",
+				{ silent = true, desc = "Obsidian: Insert Template" }
+			)
+
+			vim.keymap.set(
+				"n",
+				"<leader>dn",
+				"<cmd>ObsidianDailies<cr>",
+				{ silent = true, desc = "Obsidian: Daily Notes" }
+			)
+		end,
 	},
 	{
 		"iamcco/markdown-preview.nvim",
