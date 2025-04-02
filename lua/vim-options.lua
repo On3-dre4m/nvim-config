@@ -32,6 +32,8 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false -- Keep folds closed by default
 vim.opt.foldlevel = 99 -- Open all folds by default
 
+vim.diagnostic.config({ virtual_lines = { current_line = true } })
+
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff" })
 -- Set Lazy.nvim timeout to 0 (no timeout)
 vim.g.lazy_timeout = 0

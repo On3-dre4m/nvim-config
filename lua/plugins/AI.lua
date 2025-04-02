@@ -25,10 +25,10 @@ return {
 			provider = "openai",
 			openai = {
 				endpoint = "http://localhost:1234/v1",
-				model = "qwen2.5-coder-7b-instruct", -- your desired model (or use gpt-4o, etc.)
+				model = "yi-coder-9b-chat", -- your desired model (or use gpt-4o, etc.)
 				timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 				temperature = 0.2, -- Adjust this value as needed
-				max_tokens = 4096, -- Increase this to include reasoning tokens (for reasoning models)
+				max_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
 				disable_tools = true, -- disable tools!
 				-- ["local"] = true,
 				api_key_name = "",
