@@ -16,7 +16,8 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- "hrsh7th/cmp-nvim-lsp",
+			"barreiroleo/ltex_extra.nvim",
+			"saghen/blink.cmp",
 		},
 
 		config = function()
@@ -24,7 +25,6 @@ return {
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
 			-- local util = require("lspconfig.util")
-
 			local border = {
 				{ "╭", "FloatBorder" },
 				{ "─", "FloatBorder" },
@@ -92,26 +92,48 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.ltex.setup({
-				on_attach = function(client, bufnr)
-					-- Check if the current file is a markdown file
-					local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
-
-					-- If the filetype is 'markdown', disable LTeX features (optional)
-					if ft == "markdown" then
-						client.stop() -- Stop the LTeX server for markdown files
-					end
-				end,
+			-- lspconfig.ltex.setup({
+			-- 	cmd = { "ltex-ls" },
+			-- 	-- on_attach = function(client, bufnr)
+			-- 	-- 	-- Check if the current file is a markdown file
+			-- 	-- 	local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+			-- 	--
+			-- 	-- 	-- If the filetype is 'markdown', disable LTeX features (optional)
+			-- 	-- 	if ft == "markdown" then
+			-- 	-- 		client.stop() -- Stop the LTeX server for markdown files
+			-- 	-- 	end
+			-- 	-- end,
+			-- 	settings = {
+			-- 		ltex = {
+			-- 			enabled = { "bib", "context", "plaintex", "tex", "latex" },
+			-- 			language = "en-US",
+			-- 			disabledRules = {
+			-- 				-- "UPPERCASE_SENTENCE_START", -- Disable specific rules if needed
+			-- 				"MORFOLOGIK_RULE_EN_US",
+			-- 			},
+			-- 			hiddenFalsePositives = true,
+			-- 		},
+			-- 	},
+			-- 	capabilities = capabilities,
+			-- })
+			--
+			lspconfig.ltex_plus.setup({
+				capabilities = capabilities,
+				cmd = { "ltex-ls-plus" },
+				-- on_attach = function(client, bufnr)
+				-- 	require("ltex_extra").setup({})
+				-- end,
 				settings = {
 					ltex = {
+						enabled = { "bib", "context", "plaintex", "tex", "latex" },
 						language = "en-US",
-						lint = {
-							enabled = true, -- Disable all linting
-							disable = { "MD_BE_NON_VBP", "MORFOLOGIK_RULE_EN_US" },
+						disabledRules = {
+							-- "UPPERCASE_SENTENCE_START", -- Disable specific rules if needed
+							["en-US"] = { "MORFOLOGIK_RULE_EN_US", "LC_AFTER_PERIOD", "EN_MULTITOKEN_SPELLING_TWO" },
 						},
+						hiddenFalsePositives = true,
 					},
 				},
-				capabilities = capabilities,
 			})
 
 			lspconfig.texlab.setup({

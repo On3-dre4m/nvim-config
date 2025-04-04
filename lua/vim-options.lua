@@ -27,6 +27,29 @@ vim.opt.guicursor = {
 }
 vim.opt.termguicolors = true
 
+------------------------
+--     LATEX ZONE     --
+------------------------
+-- vim.opt.spelllang = "en,vi"
+-- -- Enable filetype detection, plugin, and indentation
+vim.cmd("filetype plugin indent on")
+--
+-- -- Enable syntax highlighting
+vim.cmd("syntax enable")
+
+vim.g.tex_IgnoredWarnings = table.concat({
+	"Underfull",
+	"Overfull",
+	"specifier changed to",
+	"You have requested",
+	"Missing number, treated as zero.",
+	"There were undefined references",
+	"Citation %.%# undefined",
+	"Double space found.",
+}, "\n")
+-- vim.g.Tex_IgnoreLevel = 8
+
+----------------------------------------------------
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false -- Keep folds closed by default
