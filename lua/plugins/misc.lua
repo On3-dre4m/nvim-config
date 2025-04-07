@@ -12,6 +12,43 @@ return {
 		"folke/which-key.nvim",
 	},
 	{
+		"epwalsh/pomo.nvim",
+		tag = "*",
+		lazy = true,
+		cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
+		opts = {
+			-- You can optionally define custom timer sessions.
+			notifiers = {
+				{
+					name = "Default",
+					opts = {
+						sticky = false,
+
+						-- Configure the display icons:
+						title_icon = "󱎫",
+						text_icon = "󰄉",
+						-- Replace the above with these if you don't have a patched font:
+						-- title_icon = "⏳",
+						-- text_icon = "⏱️",
+					},
+				},
+
+				{ name = "System" },
+			},
+			sessions = {
+				-- Example session configuration for a session called "pomodoro".
+				pomodoro = {
+					{ name = "Work", duration = "45m" },
+					{ name = "Short Break", duration = "5m" },
+					{ name = "Work", duration = "45m" },
+					{ name = "Short Break", duration = "5m" },
+					{ name = "Work", duration = "45m" },
+					{ name = "Long Break", duration = "15m" },
+				},
+			},
+		},
+	},
+	{
 		"stevearc/resession.nvim",
 		opts = {},
 		config = function()

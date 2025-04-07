@@ -5,7 +5,9 @@ return {
 			"rafamadriz/friendly-snippets",
 		},
 		config = function()
-			require("myplugins.custom_snippets")
+			-- require("myplugins.custom_snippets")
+			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_vscode").load({ paths = "./snippets" })
 		end,
 	},
 	{
@@ -57,6 +59,7 @@ return {
 			completion = {
 				menu = { border = "single" },
 				documentation = { auto_show = false },
+				keyword = { range = "full" },
 			},
 
 			signature = { window = { border = "single" }, enabled = true }, -- Default list of enabled providers defined so that you can extend it
@@ -106,7 +109,7 @@ return {
 						name = "Dict",
 						-- Make sure this is at least 2.
 						-- 3 is recommended
-						min_keyword_length = 5,
+						min_keyword_length = 3,
 						opts = {
 							-- options for blink-cmp-dictionary
 							dictionary_directories = function()

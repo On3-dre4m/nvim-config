@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
 require("vim-options")
+require("vim-keymaps")
 require("vim-templates")
 require("lazy").setup({
 	spec = {
