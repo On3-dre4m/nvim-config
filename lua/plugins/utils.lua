@@ -193,7 +193,7 @@ return {
 			vim.keymap.set(
 				"n",
 				"<leader>cc",
-				":BufferLinePickClose<CR>",
+				"<cmd>bdelete<CR>",
 				{ silent = true, desc = "[C]lose [C]urrent Buffer Line" }
 			)
 			vim.keymap.set(

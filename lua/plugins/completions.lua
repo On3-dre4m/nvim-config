@@ -47,7 +47,7 @@ return {
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 
-				["<S-k>"] = { "show_signature", "hide_signature", "fallback" },
+				["<C-l>"] = { "show_signature", "hide_signature", "fallback" },
 			},
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -92,7 +92,7 @@ return {
 					copilot = {
 						name = "copilot",
 						module = "blink-cmp-copilot",
-						score_offset = 999,
+						score_offset = -10,
 						async = true,
 					},
 					cmdline = {
@@ -119,7 +119,7 @@ return {
 								return { nil }
 							end,
 						},
-						score_offset = -200,
+						score_offset = -300,
 					},
 					emoji = {
 						module = "blink-emoji",

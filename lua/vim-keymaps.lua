@@ -32,4 +32,4 @@ local function smart_semicolon_newline()
 end
 
 -- Set the keymap for normal and insert mode
-vim.keymap.set({ "n", "i" }, "<S-CR>", smart_semicolon_newline, { noremap = true, silent = true })
+vim.keymap.set({ "n", "i" }, "<C-n>", smart_semicolon_newline, { noremap = true, silent = true })

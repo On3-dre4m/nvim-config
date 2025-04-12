@@ -24,6 +24,10 @@ return {
 			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
+			-- vim.diagnostic.config({
+			-- 	update_in_insert = false,
+			-- })
+
 			-- local util = require("lspconfig.util")
 			local border = {
 				{ "╭", "FloatBorder" },
@@ -92,30 +96,49 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.ltex_plus.setup({
-				capabilities = capabilities,
-				cmd = { "ltex-ls-plus" },
-				-- on_attach = function(client, bufnr)
-				-- 	require("ltex_extra").setup({})
-				-- end,
-				settings = {
-					ltex = {
-						enabled = { "bib", "context", "plaintex", "tex", "latex" },
-						language = "en-US",
-						disabledRules = {
-							-- "UPPERCASE_SENTENCE_START", -- Disable specific rules if needed
-							["en-US"] = {
-								"MORFOLOGIK_RULE_EN_US",
-								"LC_AFTER_PERIOD",
-								"EN_MULTITOKEN_SPELLING_TWO",
-								"ENGLISH_WORD_REPEAT_BEGINNING_RULE",
-								"INTERJECTIONS_PUNCTUATION",
-							},
-						},
-						hiddenFalsePositives = true,
-					},
-				},
-			})
+			-- lspconfig.ltex_plus.setup({
+			-- 	capabilities = capabilities,
+			-- 	cmd = { "ltex-ls-plus" },
+			-- 	server_opts = {
+			-- 		on_attach = function(client, bufnr)
+			-- 			-- Optional: visually disable diagnostics in insert mode
+			-- 			vim.api.nvim_create_autocmd("InsertEnter", {
+			-- 				buffer = bufnr,
+			-- 				callback = function()
+			-- 					vim.diagnostic.disable(bufnr)
+			-- 				end,
+			-- 			})
+			--
+			-- 			vim.api.nvim_create_autocmd("InsertLeave", {
+			-- 				buffer = bufnr,
+			-- 				callback = function()
+			-- 					vim.diagnostic.enable(bufnr)
+			-- 				end,
+			-- 			})
+			-- 		end,
+			-- 		flags = {
+			-- 			debounce_text_changes = 5000, -- Increase delay before triggering
+			-- 		},
+			-- 	},
+			-- 	settings = {
+			-- 		ltex = {
+			-- 			enabled = { "bib", "context", "plaintex", "tex", "latex" },
+			-- 			language = "en-US",
+			-- 			disabledRules = {
+			-- 				-- "UPPERCASE_SENTENCE_START", -- Disable specific rules if needed
+			-- 				["en-US"] = {
+			-- 					"MORFOLOGIK_RULE_EN_US",
+			-- 					"LC_AFTER_PERIOD",
+			-- 					"EN_MULTITOKEN_SPELLING_TWO",
+			-- 					"ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+			-- 					"COMMA_PARENTHESIS_WHITESPACE",
+			-- 					"INTERJECTIONS_PUNCTUATION",
+			-- 				},
+			-- 			},
+			-- 			hiddenFalsePositives = true,
+			-- 		},
+			-- 	},
+			-- })
 
 			lspconfig.texlab.setup({
 				capabilities = capabilities,
@@ -126,7 +149,7 @@ return {
 			})
 
 			--Set keymap for hover function
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+			vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { silent = true, desc = "[G]oto [D]efinition" })
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show [C]ode [A]ction" })
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "show [G]oto [R]eference" })
