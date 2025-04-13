@@ -33,3 +33,24 @@ end
 
 -- Set the keymap for normal and insert mode
 vim.keymap.set({ "n", "i" }, "<C-n>", smart_semicolon_newline, { noremap = true, silent = true })
+
+--Create user command for unplug the current model AI
+vim.api.nvim_create_user_command("AvanteUnload", function()
+	vim.cmd("AvanteStop")
+
+	vim.fn.jobstart("lms ps | grep 'Identifier:' | awk '{print $2}'", {
+		stdout_buffered = true,
+		on_stdout = function(_, data)
+			local model = data[1]
+			if model and model ~= "" then
+				vim.fn.jobstart({ "lms", "unload", model }, {
+					on_exit = function()
+						print("🔌 Unloaded model: " .. model)
+					end,
+				})
+			else
+				print("✅ No model is currently loaded.")
+			end
+		end,
+	})
+end, {})

@@ -24,15 +24,15 @@ return {
 	{
 		"folke/snacks.nvim",
 		opts = {
-			styles = {
-				relative = "cursor",
-				border = "rounded",
-				focusable = false,
-				backdrop = false,
-				row = 1,
-				col = 1,
-				-- width/height are automatically set by the image size unless specified below
-			},
+			-- styles = {
+			-- 	relative = "cursor",
+			-- 	border = "rounded",
+			-- 	focusable = false,
+			-- 	backdrop = false,
+			-- 	row = 1,
+			-- 	col = 1,
+			-- 	-- width/height are automatically set by the image size unless specified below
+			-- },
 			image = {
 				enabled = true,
 				doc = {
@@ -41,6 +41,10 @@ return {
 					max_width = 80,
 					max_height = 40,
 				},
+			},
+			convert = { enabled = true },
+			math = {
+				enabled = false,
 			},
 		},
 	},
