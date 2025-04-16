@@ -52,7 +52,7 @@ vim.g.tex_IgnoredWarnings = table.concat({
 ----------------------------------------------------
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldenable = false -- Keep folds closed by default
+vim.opt.foldenable = true -- Keep folds closed by default
 vim.opt.foldlevel = 99 -- Open all folds by default
 
 vim.diagnostic.config({ virtual_lines = { current_line = true } })

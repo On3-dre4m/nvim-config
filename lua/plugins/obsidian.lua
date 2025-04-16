@@ -195,12 +195,6 @@ return {
 						highlight = "RenderMarkdownWarn",
 						category = "github",
 					},
-					caution = {
-						raw = "[!CAUTION]",
-						rendered = "󰳦 Caution",
-						highlight = "RenderMarkdownError",
-						category = "github",
-					},
 					abstract = {
 						raw = "[!ABSTRACT]",
 						rendered = "󰨸 Abstract",
@@ -261,12 +255,6 @@ return {
 						highlight = "RenderMarkdownWarn",
 						category = "obsidian",
 					},
-					help = {
-						raw = "[!HELP]",
-						rendered = "󰘥 Help",
-						highlight = "RenderMarkdownWarn",
-						category = "obsidian",
-					},
 					faq = {
 						raw = "[!FAQ]",
 						rendered = "󰘥 Faq",
@@ -279,12 +267,6 @@ return {
 						highlight = "RenderMarkdownWarn",
 						category = "obsidian",
 					},
-					failure = {
-						raw = "[!FAILURE]",
-						rendered = "󰅖 Failure",
-						highlight = "RenderMarkdownError",
-						category = "obsidian",
-					},
 					fail = {
 						raw = "[!FAIL]",
 						rendered = "󰅖 Fail",
@@ -294,12 +276,6 @@ return {
 					missing = {
 						raw = "[!MISSING]",
 						rendered = "󰅖 Missing",
-						highlight = "RenderMarkdownError",
-						category = "obsidian",
-					},
-					danger = {
-						raw = "[!DANGER]",
-						rendered = "󱐌 Danger",
 						highlight = "RenderMarkdownError",
 						category = "obsidian",
 					},
