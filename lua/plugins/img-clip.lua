@@ -46,11 +46,15 @@ return {
 					float = true,
 					max_width = 80,
 					max_height = 60,
+					conceal = function(lang, type)
+						-- only conceal math expressions
+						return not type == "math"
+					end,
 				},
-			},
-			convert = { enabled = true },
-			math = {
-				enabled = true,
+				---@class snacks.image.convert.Config
+				math = {
+					enabled = true,
+				},
 			},
 		},
 	},

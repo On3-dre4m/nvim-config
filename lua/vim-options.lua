@@ -18,6 +18,9 @@ vim.o.breakindent = true -- Enable break indent (default: false)
 vim.o.ignorecase = true -- Case-insensitive searching UNLESS \C or capital in search (default: false)
 vim.o.smartcase = true -- Smart case (default: false)
 
+vim.g.markdown_folding = 1
+vim.g.markdown_enable_folding = 1
+
 -- Configure cursor appearance
 vim.opt.guicursor = {
 	"n-v-c:block", -- Normal, Visual, Command mode: block cursor

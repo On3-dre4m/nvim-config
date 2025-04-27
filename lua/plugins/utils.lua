@@ -212,13 +212,16 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-ufo",
-		dependencies = { "kevinhwang91/promise-async" },
+		dependencies = {
+			"kevinhwang91/promise-async",
+			"neovim/nvim-lspconfig",
+			"williamboman/mason-lspconfig.nvim",
+		},
 		config = function()
 			vim.o.foldcolumn = "0" -- '0' is not bad
 			vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 			vim.o.foldlevelstart = 99
 			vim.o.foldenable = true
-			vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 			-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
@@ -228,14 +231,19 @@ return {
 				dynamicRegistration = false,
 				lineFoldingOnly = true,
 			}
-			local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
+			local language_servers = { "lua_ls", "clangd", "pylsp", "texlab", "markdown_oxide" } -- or list servers manually like {'gopls', 'clangd'}
 			for _, ls in ipairs(language_servers) do
 				require("lspconfig")[ls].setup({
 					capabilities = capabilities,
 					-- you can add other fields for setting up lsp server in this table
 				})
 			end
-			require("ufo").setup()
+
+			require("ufo").setup({
+				provider_selector = function(bufnr, filetype, buftype)
+					return { "treesitter", "indent" }
+				end,
+			})
 		end,
 	},
 	{

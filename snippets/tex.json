@@ -29,13 +29,25 @@
       "\\titleformat*{\\subsubsection}{\\fontsize{13pt}{0pt}\\selectfont \\bfseries \\itshape}",
       "",
       "\\titlespacing*{\\paragraph}{0pt}{0pt}{0pt} % Heading 4",
-      "\\titleformat*{\\paragraph}{\\fontsize{13pt}{0pt}\\selectfont \\itshape}"
+      "\\titleformat*{\\paragraph}{\\fontsize{13pt}{0pt}\\selectfont \\itshape}",
+      "",
+      "",
+      "\\renewcommand{\\figurename}{\\fontsize{12pt}{0pt}\\selectfont \\bfseries Figure} % Modify the desire name for FIGURE",
+      "\\renewcommand{\\thefigure}{\\thesection.\\arabic{figure}}",
+      "\\usepackage[font=bf]{caption}",
+      "\\captionsetup[figure]{labelsep=space}",
+      "",
+      "\\renewcommand{\\tablename}{\\fontsize{12pt}{0pt}\\selectfont \\bfseries Table} % Modify the desire name for TABLE",
+      "\\renewcommand{\\thetable}{\\thesection.\\arabic{table}}",
+      "\\captionsetup[table]{labelsep=space}",
+      "",
+      "${1}"
     ],
     "description": "LaTeX document setup with custom formatting"
   },
   "Font adjustment": {
-    "prefix": "fontsize",
-    "body": ["\\fontsize{${1:14}pt}{${2:0}pt}\\selectfont $3"],
+    "prefix": "fontsize_change",
+    "body": ["\\fontsize{${1:14}pt}{${2:0}pt}\\selectfont ${3}"],
     "description": "Adjust the fontsize"
   },
   "Image adding": {
@@ -48,5 +60,38 @@
       "",
       "${4}"
     ]
+  },
+  "Table of Contents": {
+    "prefix": "toc_create",
+    "body": [
+      "% Tạo mục lục tự động",
+      "\\addtocontents{toc}{\\protect\\thispagestyle{empty}}",
+      "\\tableofcontents",
+      "\\thispagestyle{empty}",
+      "\\clearpage{}",
+      "",
+      "\\listoffigures",
+      "\\thispagestyle{empty}",
+      "\\clearpage{}",
+      "",
+      "\\listoftables",
+      "\\thispagestyle{empty}",
+      "\\clearpage{}",
+      "",
+      "${1}"
+    ]
+  },
+  "Chapter Section": {
+    "prefix": "section_to_TOCs",
+    "body": [
+      "\\section*{${1}}",
+      "\\addcontentsline{toc}{section}{\\numberline{} ${1}}",
+      "\\setcounter{section}{${2}}",
+      "\\setcounter{subsection}{0}",
+      "\\setcounter{subsubsection}{0}",
+      "",
+      "${3}"
+    ],
+    "description": "Insert a chapter section with TOC entry"
   }
 }
