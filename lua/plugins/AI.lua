@@ -55,6 +55,16 @@ return {
 					disable_tools = true, -- disable tools!
 					api_key_name = "",
 				},
+				gemma = {
+					__inherited_from = "openai",
+					endpoint = "http://localhost:1234/v1",
+					model = "gemma-3-4b-it",
+					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+					temperature = 0.4, -- Adjust this value as needed
+					max_completion_tokens = 4096, -- Increase this to include reasoning tokens (for reasoning models)
+					disable_tools = true, -- disable tools!
+					api_key_name = "",
+				},
 			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

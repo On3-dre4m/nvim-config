@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "ruff", "ltex", "pylsp" },
+				ensure_installed = { "lua_ls", "clangd", "ruff", "pylsp", "harper_ls" },
 			})
 		end,
 	},
@@ -96,30 +96,31 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.harper_ls.setup({
+				filetypes = { "markdown" },
+				settings = {
+					["harper-ls"] = {
+						userDictPath = "",
+						fileDictPath = "",
+						linters = {
+							SpellCheck = true,
+							SentenceCapitalization = true,
+						},
+						codeActions = {
+							ForceStable = false,
+						},
+						markdown = {
+							IgnoreLinkTitle = true,
+						},
+						diagnosticSeverity = "hint",
+						isolateEnglish = false,
+					},
+				},
+			})
+
 			-- lspconfig.ltex_plus.setup({
 			-- 	capabilities = capabilities,
 			-- 	cmd = { "ltex-ls-plus" },
-			-- 	server_opts = {
-			-- 		on_attach = function(client, bufnr)
-			-- 			-- Optional: visually disable diagnostics in insert mode
-			-- 			vim.api.nvim_create_autocmd("InsertEnter", {
-			-- 				buffer = bufnr,
-			-- 				callback = function()
-			-- 					vim.diagnostic.disable(bufnr)
-			-- 				end,
-			-- 			})
-			--
-			-- 			vim.api.nvim_create_autocmd("InsertLeave", {
-			-- 				buffer = bufnr,
-			-- 				callback = function()
-			-- 					vim.diagnostic.enable(bufnr)
-			-- 				end,
-			-- 			})
-			-- 		end,
-			-- 		flags = {
-			-- 			debounce_text_changes = 5000, -- Increase delay before triggering
-			-- 		},
-			-- 	},
 			-- 	settings = {
 			-- 		ltex = {
 			-- 			enabled = { "bib", "context", "plaintex", "tex", "latex" },

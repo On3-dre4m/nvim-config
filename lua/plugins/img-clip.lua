@@ -51,6 +51,9 @@ return {
 						return not type == "math"
 					end,
 				},
+				convert = {
+					notify = false,
+				},
 				---@class snacks.image.convert.Config
 				math = {
 					enabled = true,
