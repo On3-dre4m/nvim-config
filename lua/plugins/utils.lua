@@ -1,4 +1,80 @@
 return {
+	---@type LazySpec
+	{
+		"mikavilpas/yazi.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			-- check the installation instructions at
+			-- https://github.com/folke/snacks.nvim
+			-- "folke/snacks.nvim",
+		},
+		keys = {
+			-- 👇 in this section, choose your own keymappings!
+			{
+				"<leader>e",
+				mode = { "n", "v" },
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
+			},
+			{
+				-- Open in the current working directory
+				"<leader>cw",
+				"<cmd>Yazi cwd<cr>",
+				desc = "Open the file manager in nvim's working directory",
+			},
+			-- {
+			-- 	"<c-up>",
+			-- 	"<cmd>Yazi toggle<cr>",
+			-- 	desc = "Resume the last yazi session",
+			-- },
+		},
+		---@type YaziConfig | {}
+		opts = {
+			-- if you want to open yazi instead of netrw, see below for more info
+			open_for_directories = false,
+			keymaps = {
+				show_help = "<f1>",
+			},
+		},
+		-- 👇 if you use `open_for_directories=true`, this is recommended
+		init = function()
+			-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+			-- vim.g.loaded_netrw = 1
+			vim.g.loaded_netrwPlugin = 1
+		end,
+	},
+
+	{
+		"kdheepak/lazygit.nvim",
+		lazy = true,
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		-- setting the keybinding for LazyGit with 'keys' is recommended in
+		-- order to load the plugin when the command is run for the first time
+		keys = {
+			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
+	},
+	----------------------------------------
+	--  STABLE AND NEED NOT TO CUSTOMIZE  --
+	----------------------------------------
+	--               | |                  --
+	--               | |                  --
+	--             __| |__                --
+	--             \     /                --
+	--              \   /                 --
+	--               \ /                  --
+	--                V                   --
+	----------------------------------------
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
@@ -117,7 +193,7 @@ return {
 			vim.keymap.set(
 				"n",
 				"<leader>cc",
-				":BufferLinePickClose<CR>",
+				"<cmd>bdelete<CR>",
 				{ silent = true, desc = "[C]lose [C]urrent Buffer Line" }
 			)
 			vim.keymap.set(
@@ -136,8 +212,33 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-ufo",
-		dependencies = { "kevinhwang91/promise-async" },
+		dependencies = {
+			"kevinhwang91/promise-async",
+			"neovim/nvim-lspconfig",
+			"williamboman/mason-lspconfig.nvim",
+		},
 		config = function()
+			vim.o.foldcolumn = "0" -- '0' is not bad
+			vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+			vim.o.foldlevelstart = 99
+			vim.o.foldenable = true
+
+			-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
+			local language_servers = { "lua_ls", "clangd", "pylsp", "texlab", "markdown_oxide" } -- or list servers manually like {'gopls', 'clangd'}
+			for _, ls in ipairs(language_servers) do
+				require("lspconfig")[ls].setup({
+					capabilities = capabilities,
+					-- you can add other fields for setting up lsp server in this table
+				})
+			end
+
 			require("ufo").setup({
 				provider_selector = function(bufnr, filetype, buftype)
 					return { "treesitter", "indent" }
@@ -150,11 +251,23 @@ return {
 		event = "VeryLazy",
 		---@type Flash.Config
 		opts = {},
-  -- stylua: ignore
-  keys = {
-    { "<leader>s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    { "<leader>S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    
-  },
+		keys = {
+			{
+				"<leader>s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+			{
+				"<leader>S",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+		},
 	},
 }

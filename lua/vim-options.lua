@@ -18,6 +18,9 @@ vim.o.breakindent = true -- Enable break indent (default: false)
 vim.o.ignorecase = true -- Case-insensitive searching UNLESS \C or capital in search (default: false)
 vim.o.smartcase = true -- Smart case (default: false)
 
+vim.g.markdown_folding = 1
+vim.g.markdown_enable_folding = 1
+
 -- Configure cursor appearance
 vim.opt.guicursor = {
 	"n-v-c:block", -- Normal, Visual, Command mode: block cursor
@@ -27,10 +30,35 @@ vim.opt.guicursor = {
 }
 vim.opt.termguicolors = true
 
+------------------------
+--     LATEX ZONE     --
+------------------------
+-- vim.opt.spelllang = "en,vi"
+-- -- Enable filetype detection, plugin, and indentation
+vim.cmd("filetype plugin indent on")
+--
+-- -- Enable syntax highlighting
+vim.cmd("syntax enable")
+
+vim.g.tex_IgnoredWarnings = table.concat({
+	"Underfull",
+	"Overfull",
+	"specifier changed to",
+	"You have requested",
+	"Missing number, treated as zero.",
+	"There were undefined references",
+	"Citation %.%# undefined",
+	"Double space found.",
+}, "\n")
+-- vim.g.Tex_IgnoreLevel = 8
+
+----------------------------------------------------
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldenable = false -- Keep folds closed by default
+vim.opt.foldenable = true -- Keep folds closed by default
 vim.opt.foldlevel = 99 -- Open all folds by default
+
+vim.diagnostic.config({ virtual_lines = { current_line = true } })
 
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff" })
 -- Set Lazy.nvim timeout to 0 (no timeout)

@@ -12,6 +12,8 @@ return {
 					python = { "isort", "black" },
 					markdown = { "prettier" },
 					tex = { "latexindent" },
+					json = { "prettier" },
+
 				},
 				formatters = {
 					clang_format = {
@@ -51,6 +53,8 @@ return {
 				c = { "cpplint" },
 				cpp = { "cpplint" },
 				python = { "ruff" },
+				tex = { "vale" },
+				-- markdown = { "vale" },
 			}
 			require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
 			-- require("lint.linters.vale").cmd = vim.fn.stdpath("data") .. "/mason/bin/vale"
@@ -60,7 +64,7 @@ return {
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave", "TextChanged" }, {
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 				group = lint_augroup,
 				callback = function()
 					lint.try_lint()

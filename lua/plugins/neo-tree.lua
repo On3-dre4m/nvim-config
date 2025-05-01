@@ -10,7 +10,9 @@ return {
 	config = function()
 		vim.keymap.set(
 			"n",
-			"<leader>e",
+
+			"<leader>E",
+
 			":Neotree filesystem toggle<CR>",
 			{ noremap = true, silent = true, desc = "Toggle Buffers" }
 		)
@@ -22,12 +24,5 @@ return {
 			{ noremap = true, silent = true, desc = "Toggle Buffers" }
 		)
 
-		-- Toggle Git Status
-		vim.keymap.set(
-			"n",
-			"<leader>gs",
-			":Neotree git_status toggle<CR>",
-			{ noremap = true, silent = true, desc = "Toggle Git Status" }
-		)
 	end,
 }

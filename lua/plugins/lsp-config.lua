@@ -9,22 +9,26 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "ruff", "ltex", "pylsp" },
+				ensure_installed = { "lua_ls", "clangd", "ruff", "pylsp", "harper_ls" },
 			})
 		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- "hrsh7th/cmp-nvim-lsp",
+			"barreiroleo/ltex_extra.nvim",
+			"saghen/blink.cmp",
 		},
 
 		config = function()
 			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
-			-- local util = require("lspconfig.util")
+			-- vim.diagnostic.config({
+			-- 	update_in_insert = false,
+			-- })
 
+			-- local util = require("lspconfig.util")
 			local border = {
 				{ "╭", "FloatBorder" },
 				{ "─", "FloatBorder" },
@@ -92,27 +96,50 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.ltex.setup({
-				on_attach = function(client, bufnr)
-					-- Check if the current file is a markdown file
-					local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
-
-					-- If the filetype is 'markdown', disable LTeX features (optional)
-					if ft == "markdown" then
-						client.stop() -- Stop the LTeX server for markdown files
-					end
-				end,
+      lspconfig.harper_ls.setup({
+				filetypes = { "markdown" },
 				settings = {
-					ltex = {
-						language = "en-US",
-						lint = {
-							enabled = true, -- Disable all linting
-							disable = { "MD_BE_NON_VBP", "MORFOLOGIK_RULE_EN_US" },
+					["harper-ls"] = {
+						userDictPath = "",
+						fileDictPath = "",
+						linters = {
+							SpellCheck = true,
+							SentenceCapitalization = true,
 						},
+						codeActions = {
+							ForceStable = false,
+						},
+						markdown = {
+							IgnoreLinkTitle = true,
+						},
+						diagnosticSeverity = "hint",
+						isolateEnglish = false,
 					},
 				},
-				capabilities = capabilities,
 			})
+
+			-- lspconfig.ltex_plus.setup({
+			-- 	capabilities = capabilities,
+			-- 	cmd = { "ltex-ls-plus" },
+			-- 	settings = {
+			-- 		ltex = {
+			-- 			enabled = { "bib", "context", "plaintex", "tex", "latex" },
+			-- 			language = "en-US",
+			-- 			disabledRules = {
+			-- 				-- "UPPERCASE_SENTENCE_START", -- Disable specific rules if needed
+			-- 				["en-US"] = {
+			-- 					"MORFOLOGIK_RULE_EN_US",
+			-- 					"LC_AFTER_PERIOD",
+			-- 					"EN_MULTITOKEN_SPELLING_TWO",
+			-- 					"ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+			-- 					"COMMA_PARENTHESIS_WHITESPACE",
+			-- 					"INTERJECTIONS_PUNCTUATION",
+			-- 				},
+			-- 			},
+			-- 			hiddenFalsePositives = true,
+			-- 		},
+			-- 	},
+			-- })
 
 			lspconfig.texlab.setup({
 				capabilities = capabilities,
@@ -123,7 +150,7 @@ return {
 			})
 
 			--Set keymap for hover function
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+			vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { silent = true, desc = "[G]oto [D]efinition" })
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show [C]ode [A]ction" })
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "show [G]oto [R]eference" })
