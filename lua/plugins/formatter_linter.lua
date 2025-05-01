@@ -13,6 +13,7 @@ return {
 					markdown = { "prettier" },
 					tex = { "latexindent" },
 					json = { "prettier" },
+
 				},
 				formatters = {
 					clang_format = {

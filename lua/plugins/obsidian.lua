@@ -52,6 +52,7 @@ return {
 				vim.fn.jobstart({ "xdg-open", url }) -- linux
 				-- vim.ui.open(url) -- need Neovim 0.10.0+
 			end,
+      
 			daily_notes = {
 				folder = "3. Journal/Daily",
 				date_format = "%Y-%m-%d",
@@ -84,6 +85,7 @@ return {
 				{ silent = true, desc = "Obsidian: Daily Notes" }
 			)
 		end,
+
 	},
 	{
 		"iamcco/markdown-preview.nvim",
@@ -103,6 +105,7 @@ return {
 		ft = { "markdown", "Avante" },
 		config = function()
 			require("render-markdown").setup({
+
 				completions = { blink = { enabled = true } },
 				dash = {
 					enabled = false,
@@ -124,6 +127,7 @@ return {
 				},
 				paragraph = {
 					min_width = 30,
+
 				},
 				code = {
 					sign = false,
@@ -131,6 +135,7 @@ return {
 					left_pad = 2,
 					right_pad = 4,
 				},
+
 				checkbox = {
 					custom = {
 						important = {
@@ -291,6 +296,7 @@ return {
 					},
 				},
 				sign = { enabled = true },
+
 			})
 		end,
 	},

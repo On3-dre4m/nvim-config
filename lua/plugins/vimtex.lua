@@ -4,6 +4,7 @@ return {
 		lazy = false, -- we don't want to lazy load VimTeX
 		-- tag = "v2.15", -- uncomment to pin to a specific release
 		init = function()
+
 			vim.g.maplocalleader = ","
 			vim.g.vimtex_view_method = "zathura"
 			vim.g.vimtex_view_general_viewer = "okular"
@@ -16,6 +17,7 @@ return {
 
 			-- Enable filetype detection, plugin, and indent settings
 			vim.cmd("syntax enable") -- VimTeX configuration goes here, e.g.
+
 		end,
 	},
 }

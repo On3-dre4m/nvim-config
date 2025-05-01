@@ -22,6 +22,7 @@ return {
 		opts = {
 			-- add any opts here
 			-- for example
+
 			-- provider = "openai",
 			openai = {
 				endpoint = "http://localhost:1234/v1",
@@ -65,6 +66,8 @@ return {
 					disable_tools = true, -- disable tools!
 					api_key_name = "",
 				},
+
+
 			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

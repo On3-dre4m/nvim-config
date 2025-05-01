@@ -10,7 +10,9 @@ return {
 	config = function()
 		vim.keymap.set(
 			"n",
+
 			"<leader>E",
+
 			":Neotree filesystem toggle<CR>",
 			{ noremap = true, silent = true, desc = "Toggle Buffers" }
 		)
@@ -21,5 +23,6 @@ return {
 			":Neotree buffers toggle<CR>",
 			{ noremap = true, silent = true, desc = "Toggle Buffers" }
 		)
+
 	end,
 }

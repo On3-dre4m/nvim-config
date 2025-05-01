@@ -96,7 +96,7 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.harper_ls.setup({
+      lspconfig.harper_ls.setup({
 				filetypes = { "markdown" },
 				settings = {
 					["harper-ls"] = {
