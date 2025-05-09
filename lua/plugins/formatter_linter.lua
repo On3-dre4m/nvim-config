@@ -3,6 +3,19 @@ return {
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
+			---Custom function
+			local function find_clang_format_file()
+				local cwd = vim.fn.getcwd()
+				local file = cwd .. "/.clang-format"
+
+				if vim.fn.filereadable(file) == 1 then
+					return true
+				else
+					return false
+				end
+			end
+			---
+
 			local conform = require("conform")
 			conform.setup({
 				formatters_by_ft = {
@@ -13,13 +26,20 @@ return {
 					markdown = { "prettier" },
 					tex = { "latexindent" },
 					json = { "prettier" },
-
 				},
 				formatters = {
 					clang_format = {
-						prepend_args = {
-							"--style={BreakBeforeBinaryOperators: None, BreakBeforeBraces: Attach, AllowShortFunctionsOnASingleLine: None, ColumnLimit: 0, IndentWidth: 4, PenaltyBreakAssignment: 100, PenaltyBreakString: 100}",
-						},
+						args = function()
+							if find_clang_format_file() then
+								vim.notify("Using .clang-format file", vim.log.levels.INFO)
+								return { "-style=file" }
+							else
+								vim.notify("Using the default format", vim.log.levels.INFO)
+								return {
+									"--style={BreakBeforeBinaryOperators: None, BreakBeforeBraces: Attach, AllowShortFunctionsOnASingleLine: None, ColumnLimit: 0, IndentWidth: 4, PenaltyBreakAssignment: 100, PenaltyBreakString: 100}",
+								}
+							end
+						end,
 					},
 					latexindent = {
 						prepend_args = {},
@@ -56,7 +76,7 @@ return {
 				tex = { "vale" },
 				-- markdown = { "vale" },
 			}
-			require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
+			-- require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
 			-- require("lint.linters.vale").cmd = vim.fn.stdpath("data") .. "/mason/bin/vale"
 
 			require("lint").linters.cpplint.args = {

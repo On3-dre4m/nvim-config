@@ -48,9 +48,7 @@ return {
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 
-
 				["<C-l>"] = { "show_signature", "hide_signature", "fallback" },
-
 			},
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -64,7 +62,6 @@ return {
 				documentation = { auto_show = false },
 
 				keyword = { range = "full" },
-
 			},
 
 			signature = { window = { border = "single" }, enabled = true }, -- Default list of enabled providers defined so that you can extend it
@@ -130,7 +127,6 @@ return {
 						},
 
 						score_offset = -300,
-
 					},
 					emoji = {
 						module = "blink-emoji",

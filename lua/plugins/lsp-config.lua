@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "ruff", "pylsp", "harper_ls" },
+				ensure_installed = { "lua_ls", "clangd", "ruff", "pyright", "harper_ls" },
 			})
 		end,
 	},
@@ -82,21 +82,34 @@ return {
 			})
 			lspconfig.csharp_ls.setup({ capabilities = capabilities })
 
-			lspconfig.pylsp.setup({
+			-- lspconfig.pylsp.setup({
+			-- 	settings = {
+			-- 		pylsp = {
+			-- 			plugins = {
+			-- 				pycodestyle = {
+			-- 					ignore = { "W391", "E265" },
+			-- 					maxLineLength = 100,
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	},
+			-- 	capabilities = capabilities,
+			-- })
+
+			lspconfig.pyright.setup({
 				settings = {
-					pylsp = {
-						plugins = {
-							pycodestyle = {
-								ignore = { "W391", "E265" },
-								maxLineLength = 100,
-							},
+					python = {
+						analysis = {
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "workspace",
 						},
 					},
 				},
 				capabilities = capabilities,
 			})
 
-      lspconfig.harper_ls.setup({
+			lspconfig.harper_ls.setup({
 				filetypes = { "markdown" },
 				settings = {
 					["harper-ls"] = {

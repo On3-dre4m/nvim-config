@@ -23,7 +23,7 @@ return {
 			-- add any opts here
 			-- for example
 
-			-- provider = "openai",
+			provider = "openai",
 			openai = {
 				endpoint = "http://localhost:1234/v1",
 				model = "yi-coder-9b-chat", -- your desired model (or use gpt-4o, etc.)
@@ -36,6 +36,7 @@ return {
 			},
 			-- provider = "math",
 			vendors = {
+
 				math = {
 					__inherited_from = "openai",
 					endpoint = "http://localhost:1234/v1",
@@ -46,6 +47,7 @@ return {
 					disable_tools = true, -- disable tools!
 					api_key_name = "",
 				},
+
 				metallm = {
 					__inherited_from = "openai",
 					endpoint = "http://localhost:1234/v1",
@@ -56,6 +58,7 @@ return {
 					disable_tools = true, -- disable tools!
 					api_key_name = "",
 				},
+
 				gemma = {
 					__inherited_from = "openai",
 					endpoint = "http://localhost:1234/v1",
@@ -66,8 +69,6 @@ return {
 					disable_tools = true, -- disable tools!
 					api_key_name = "",
 				},
-
-
 			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

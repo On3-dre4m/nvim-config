@@ -84,10 +84,10 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Resize with arrows
--- vim.keymap.set("n", "<Up>", ":resize -2<CR>", {})
--- vim.keymap.set("n", "<Down>", ":resize +2<CR>", {})
--- vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", {})
--- vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", {})
+vim.keymap.set("n", "<Up>", ":resize -6<CR>", {})
+vim.keymap.set("n", "<Down>", ":resize +6<CR>", {})
+vim.keymap.set("n", "<Left>", ":vertical resize -6<CR>", {})
+vim.keymap.set("n", "<Right>", ":vertical resize +6<CR>", {})
 
 -- save file
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", {})
