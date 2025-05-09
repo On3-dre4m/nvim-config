@@ -82,20 +82,6 @@ return {
 			})
 			lspconfig.csharp_ls.setup({ capabilities = capabilities })
 
-			-- lspconfig.pylsp.setup({
-			-- 	settings = {
-			-- 		pylsp = {
-			-- 			plugins = {
-			-- 				pycodestyle = {
-			-- 					ignore = { "W391", "E265" },
-			-- 					maxLineLength = 100,
-			-- 				},
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	capabilities = capabilities,
-			-- })
-
 			lspconfig.pyright.setup({
 				settings = {
 					python = {
