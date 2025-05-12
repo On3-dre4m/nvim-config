@@ -6,6 +6,11 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavor = "mocha",
+				transparent_background = true,
+				integrations = {
+					gitsigns = true,
+					flash = true,
+				},
 			})
 			vim.cmd.colorscheme("catppuccin")
 			-- Delay applying highlights slightly to ensure they take effect
@@ -52,5 +57,4 @@ return {
 			require("gruvbox").setup({})
 		end,
 	},
-
 }

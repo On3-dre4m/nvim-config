@@ -117,28 +117,32 @@ return {
 				},
 			})
 
-			-- lspconfig.ltex_plus.setup({
-			-- 	capabilities = capabilities,
-			-- 	cmd = { "ltex-ls-plus" },
-			-- 	settings = {
-			-- 		ltex = {
-			-- 			enabled = { "bib", "context", "plaintex", "tex", "latex" },
-			-- 			language = "en-US",
-			-- 			disabledRules = {
-			-- 				-- "UPPERCASE_SENTENCE_START", -- Disable specific rules if needed
-			-- 				["en-US"] = {
-			-- 					"MORFOLOGIK_RULE_EN_US",
-			-- 					"LC_AFTER_PERIOD",
-			-- 					"EN_MULTITOKEN_SPELLING_TWO",
-			-- 					"ENGLISH_WORD_REPEAT_BEGINNING_RULE",
-			-- 					"COMMA_PARENTHESIS_WHITESPACE",
-			-- 					"INTERJECTIONS_PUNCTUATION",
-			-- 				},
-			-- 			},
-			-- 			hiddenFalsePositives = true,
-			-- 		},
-			-- 	},
-			-- })
+			lspconfig.ltex_plus.setup({
+				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					-- rest of your on_attach process.
+					require("ltex_extra").setup({})
+				end,
+				cmd = { "ltex-ls-plus" },
+				settings = {
+					ltex = {
+						enabled = { "bib", "context", "plaintex", "tex", "latex" },
+						language = "en-US",
+						disabledRules = {
+							-- "UPPERCASE_SENTENCE_START", -- Disable specific rules if needed
+							["en-US"] = {
+								"MORFOLOGIK_RULE_EN_US",
+								"LC_AFTER_PERIOD",
+								"EN_MULTITOKEN_SPELLING_TWO",
+								"ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+								"COMMA_PARENTHESIS_WHITESPACE",
+								"INTERJECTIONS_PUNCTUATION",
+							},
+						},
+						hiddenFalsePositives = { ["en-US"] = {} },
+					},
+				},
+			})
 
 			lspconfig.texlab.setup({
 				capabilities = capabilities,

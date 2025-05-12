@@ -73,7 +73,7 @@ return {
 				c = { "cpplint" },
 				cpp = { "cpplint" },
 				python = { "ruff" },
-				tex = { "vale" },
+				-- tex = { "vale" },
 				-- markdown = { "vale" },
 			}
 			-- require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"

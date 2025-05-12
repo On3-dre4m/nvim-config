@@ -44,8 +44,8 @@ return {
 				doc = {
 					inline = false,
 					float = true,
-					max_width = 80,
-					max_height = 60,
+					max_width = 50,
+					max_height = 40,
 					conceal = function(lang, type)
 						-- only conceal math expressions
 						return not type == "math"
@@ -60,6 +60,5 @@ return {
 				},
 			},
 		},
-
 	},
 }
