@@ -23,28 +23,26 @@ return {
 			-- add any opts here
 			-- for example
 
-			provider = "openai",
 			openai = {
 				endpoint = "http://localhost:1234/v1",
 				model = "yi-coder-9b-chat", -- your desired model (or use gpt-4o, etc.)
 				timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 				temperature = 0.4, -- Adjust this value as needed
 				max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
-				disable_tools = true, -- disable tools!
+				disable_tools = { "web_search", "fetch", "git_commit" }, -- Disable unsupported tools
 				api_key_name = "",
 				--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models,
 			},
-			-- provider = "math",
+			provider = "openai",
 			vendors = {
-
 				math = {
 					__inherited_from = "openai",
 					endpoint = "http://localhost:1234/v1",
 					model = "deepseek-math-7b-instruct",
 					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					temperature = 0.4, -- Adjust this value as needed
-					max_completion_tokens = 4096, -- Increase this to include reasoning tokens (for reasoning models)
-					disable_tools = true, -- disable tools!
+					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+					disable_tools = true, -- Disable unsupported tools
 					api_key_name = "",
 				},
 
@@ -55,7 +53,7 @@ return {
 					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					temperature = 0.4, -- Adjust this value as needed
 					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
-					disable_tools = true, -- disable tools!
+					disable_tools = { "web_search", "fetch", "git_commit" }, -- Disable unsupported tools
 					api_key_name = "",
 				},
 
@@ -65,7 +63,7 @@ return {
 					model = "gemma-3-4b-it",
 					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					temperature = 0.4, -- Adjust this value as needed
-					max_completion_tokens = 4096, -- Increase this to include reasoning tokens (for reasoning models)
+					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
 					disable_tools = true, -- disable tools!
 					api_key_name = "",
 				},
