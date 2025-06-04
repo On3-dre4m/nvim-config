@@ -10,6 +10,7 @@ return {
 				integrations = {
 					gitsigns = true,
 					flash = true,
+					blink_cmp = true,
 				},
 			})
 			vim.cmd.colorscheme("catppuccin")

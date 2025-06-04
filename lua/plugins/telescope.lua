@@ -15,7 +15,8 @@ return {
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind [B]uffer" })
 			vim.keymap.set("n", "<leader>fc", builtin.colorscheme, { desc = "[F]ind [C]olorscheme" })
 
-			vim.keymap.set("n", "<leader>fs", builtin.lsp_workspace_symbols, { desc = "[F]ind [S]ymbols" })
+			vim.keymap.set("n", "<leader>fs", builtin.treesitter, { desc = "[F]ind Symbols in TREESITTER" })
+			vim.keymap.set("n", "<leader>fS", builtin.lsp_workspace_symbols, { desc = "[F]ind [S]ymbols" })
 			vim.keymap.set("n", "<leader>fi", builtin.lsp_incoming_calls, { desc = "[F]ind [I]ncoming Calls" })
 			vim.keymap.set("n", "<leader>fI", builtin.builtin, { desc = "[F]ind [A]ll Builtin Functions" })
 			vim.keymap.set("n", "<leader>fn", ":Noice telescope<CR>", { desc = "[F]ind [N]oice history" })

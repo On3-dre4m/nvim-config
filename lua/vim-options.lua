@@ -17,7 +17,6 @@ vim.o.autoindent = true -- Copy indent from current line when starting new one (
 vim.o.breakindent = true -- Enable break indent (default: false)
 vim.o.ignorecase = true -- Case-insensitive searching UNLESS \C or capital in search (default: false)
 vim.o.smartcase = true -- Smart case (default: false)
-vim.o.colorcolumn = "110"
 
 vim.g.markdown_folding = 1
 vim.g.markdown_enable_folding = 1
@@ -86,6 +85,7 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Move focus to the upper window" })
 
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
