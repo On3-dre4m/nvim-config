@@ -12,7 +12,9 @@ return {
 				end,
 				extension = "avif", ---@type string
 				process_cmd = "convert - -quality 75 avif:-", ---@type string
+				file_name = "%Y-%m-%d-%H-%M-%S",
 				prompt_for_file_name = true,
+				-- show_dir_path_in_prompt = true,
 			},
 		},
 		keys = {
@@ -44,8 +46,8 @@ return {
 				doc = {
 					inline = false,
 					float = true,
-					max_width = 50,
-					max_height = 40,
+					max_width = 80,
+					max_height = 60,
 					conceal = function(lang, type)
 						-- only conceal math expressions
 						return not type == "math"
