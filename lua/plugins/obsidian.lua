@@ -18,6 +18,7 @@ return {
 
 			notes_subdir = "4. NOTE",
 			new_notes_location = "notes_subdir",
+			-- new_notes_location = "current_dir",
 
 			note_id_func = function(title)
 				-- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
@@ -83,16 +84,30 @@ return {
 			require("obsidian").setup(opts)
 			vim.keymap.set(
 				"n",
-				"<leader>nn",
-				"<cmd>ObsidianTOC<cr>",
-				{ silent = true, desc = "Obsidian: Table of Content" }
+				"<leader>nt",
+				"<cmd>ObsidianTags<cr>",
+				{ silent = true, desc = "Obsidian: [I]nsert Tags filter" }
 			)
 
 			vim.keymap.set(
 				"n",
-				"<leader>nt",
+				"<leader>nb",
+				"<cmd>ObsidianBacklinks<cr>",
+				{ silent = true, desc = "Obsidian: [B]acklinks lists" }
+			)
+
+			vim.keymap.set(
+				"n",
+				"<leader>nl",
+				"<cmd>ObsidianLinks<cr>",
+				{ silent = true, desc = "Obsidian: ALL [L]inks lists" }
+			)
+
+			vim.keymap.set(
+				"n",
+				"<leader>ni",
 				"<cmd>ObsidianTemplate<cr>",
-				{ silent = true, desc = "Obsidian: Insert Template" }
+				{ silent = true, desc = "Obsidian: [I]nsert Template" }
 			)
 
 			vim.keymap.set(
@@ -124,17 +139,18 @@ return {
 
 				completions = { blink = { enabled = true } },
 				dash = {
-					enabled = false,
+					enabled = true,
+					width = 90,
 				},
 				latex = { enabled = false },
 				heading = {
 					icons = {
-						"󰬺.",
-						"󰬻.",
-						"󰬼.",
-						"󰬽.",
-						"󰬾.",
-						"󰬿.",
+						"󰎤.",
+						"󰎧.",
+						"󰎪.",
+						"󰎭.",
+						"󰎱.",
+						"󰎳.",
 					},
 
 					width = "block",

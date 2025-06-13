@@ -124,6 +124,12 @@ return {
 					require("ltex_extra").setup({})
 				end,
 				cmd = { "ltex-ls-plus" },
+				filetypes = {
+					"tex",
+					"bib",
+					"context",
+					"plaintex",
+				},
 				settings = {
 					ltex = {
 						enabled = { "bib", "context", "plaintex", "tex", "latex" },

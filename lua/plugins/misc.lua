@@ -10,6 +10,16 @@ return {
 	{
 		-- Hints keybinds
 		"folke/which-key.nvim",
+		event = "VeryLazy",
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = true })
+				end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
+		},
 	},
 	{
 		"epwalsh/pomo.nvim",
@@ -38,11 +48,11 @@ return {
 			sessions = {
 				-- Example session configuration for a session called "pomodoro".
 				pomodoro = {
-					{ name = "Work", duration = "45m" },
-					{ name = "Short Break", duration = "5m" },
-					{ name = "Work", duration = "45m" },
-					{ name = "Short Break", duration = "5m" },
-					{ name = "Work", duration = "45m" },
+					{ name = "Work", duration = "50m" },
+					{ name = "Short Break", duration = "10m" },
+					{ name = "Work", duration = "50m" },
+					{ name = "Short Break", duration = "10m" },
+					{ name = "Work", duration = "50m" },
 					{ name = "Long Break", duration = "15m" },
 				},
 			},
