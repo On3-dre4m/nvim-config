@@ -31,7 +31,8 @@ return {
 					temperature = 0.4, -- Adjust this value as needed
 					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
 				},
-				disable_tools = { "web_search", "fetch", "git_commit" }, -- Disable unsupported tools
+				-- disable_tools = { "web_search", "fetch", "git_commit" }, -- Disable unsupported tools
+				disable_tools = true, -- Disable unsupported tools
 				api_key_name = "",
 				--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models,
 			},
@@ -59,7 +60,9 @@ return {
 						temperature = 0.4, -- Adjust this value as needed
 						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
 					},
-					disable_tools = { "web_search", "fetch", "git_commit" }, -- Disable unsupported tools
+					-- disable_tools = { "web_search", "fetch", "git_commit" }, -- Disable unsupported tools
+					disable_tools = true, -- Disable unsupported tools
+
 					api_key_name = "",
 				},
 

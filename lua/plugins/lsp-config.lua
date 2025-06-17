@@ -9,7 +9,15 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "ruff", "pyright" },
+				ensure_installed = {
+					"lua_ls",
+					"clangd",
+					"pyright",
+					"harper_ls",
+					"texlab",
+					"markdown_oxide",
+					"ltex_plus",
+				},
 			})
 		end,
 	},
@@ -100,8 +108,8 @@ return {
 				capabilities = capabilities,
 			})
 
-			vim.lsp.enable("harper-ls")
-			vim.lsp.config("harper-ls", {
+			vim.lsp.enable("harper_ls")
+			vim.lsp.config("harper_ls", {
 				filetypes = { "markdown" },
 				settings = {
 					["harper-ls"] = {
@@ -168,7 +176,7 @@ return {
 			})
 
 			--Set keymap for hover function
-			vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, {})
+			-- vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { silent = true, desc = "[G]oto [D]efinition" })
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show [C]ode [A]ction" })
 			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "show [G]oto [R]eference" })

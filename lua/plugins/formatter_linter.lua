@@ -23,9 +23,9 @@ return {
 					c = { "clang_format" },
 					cpp = { "clang_format" },
 					python = { "isort", "black" },
-					markdown = { "prettier" },
+					markdown = { "prettierd" },
 					tex = { "latexindent" },
-					json = { "prettier" },
+					json = { "prettierd" },
 				},
 				formatters = {
 					clang_format = {
