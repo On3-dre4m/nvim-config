@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "ruff", "pyright", "harper_ls" },
+				ensure_installed = { "lua_ls", "clangd", "ruff", "pyright" },
 			})
 		end,
 	},
@@ -45,7 +45,8 @@ return {
 				padding = { 2, 2 },
 			})
 			--Where to add LSP for Language
-			lspconfig.lua_ls.setup({
+			vim.lsp.enable("lua_ls")
+			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
 						runtime = {
@@ -70,19 +71,23 @@ return {
 						},
 					},
 				},
-			}, { capabilities = capabilities })
+				capabilities = capabilities,
+			})
 
-			lspconfig.clangd.setup({
-
+			vim.lsp.enable("clangd")
+			vim.lsp.config("clangd", {
 				cmd = {
 					"clangd",
 				},
 
 				capabilities = capabilities,
 			})
-			lspconfig.csharp_ls.setup({ capabilities = capabilities })
 
-			lspconfig.pyright.setup({
+			vim.lsp.enable("csharp_ls")
+			vim.lsp.config("csharp_ls", { capabilities = capabilities })
+
+			vim.lsp.enable("pyright")
+			vim.lsp.config("pyright", {
 				settings = {
 					python = {
 						analysis = {
@@ -95,7 +100,8 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.harper_ls.setup({
+			vim.lsp.enable("harper-ls")
+			vim.lsp.config("harper-ls", {
 				filetypes = { "markdown" },
 				settings = {
 					["harper-ls"] = {
@@ -117,7 +123,8 @@ return {
 				},
 			})
 
-			lspconfig.ltex_plus.setup({
+			vim.lsp.enable("ltex_plus")
+			vim.lsp.config("ltex_plus", {
 				capabilities = capabilities,
 				on_attach = function(client, bufnr)
 					-- rest of your on_attach process.
@@ -150,19 +157,21 @@ return {
 				},
 			})
 
-			lspconfig.texlab.setup({
+			vim.lsp.enable("texlab")
+			vim.lsp.config("texlab", {
 				capabilities = capabilities,
 			})
 
-			lspconfig.markdown_oxide.setup({
+			vim.lsp.enable("markdown_oxide")
+			vim.lsp.config("markdown_oxide", {
 				capabilities = capabilities,
 			})
 
 			--Set keymap for hover function
 			vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { silent = true, desc = "[G]oto [D]efinition" })
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { silent = true, desc = "[G]oto [D]efinition" })
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show [C]ode [A]ction" })
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "show [G]oto [R]eference" })
+			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "show [G]oto [R]eference" })
 			--vim.keymap.set()
 		end,
 	},

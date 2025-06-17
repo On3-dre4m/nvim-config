@@ -38,21 +38,23 @@ return {
 				buftype = "Terminal", -- 'Terminal' or 'BufTerminal' for terminal buffer vs normal buffer
 			},
 		})
-		-- TODO: config C/C++/Rust Adapter
-		dap.adapters.cppdbg = {
-			id = "cppdbg",
-			type = "executable",
-			command = require("mason-registry").get_package("cpptools"):get_install_path()
-				.. "/extension/debugAdapters/bin/OpenDebugAD7",
 
-			setupCommands = {
-				{
-					description = "Enable pretty printing for gdb",
-					text = "-enable-pretty-printing",
-					ignoreFailures = false,
-				},
-			},
-		}
+		-- TODO: config C/C++/Rust Adapter
+
+		-- dap.adapters.cppdbg = {
+		-- 	id = "cppdbg",
+		-- 	type = "executable",
+		-- 	command = require("mason-registry").get_package("cpptools"):get_install_path()
+		-- 		.. "/extension/debugAdapters/bin/OpenDebugAD7",
+		--
+		-- 	setupCommands = {
+		-- 		{
+		-- 			description = "Enable pretty printing for gdb",
+		-- 			text = "-enable-pretty-printing",
+		-- 			ignoreFailures = false,
+		-- 		},
+		-- 	},
+		-- }
 
 		dap.configurations.cpp = {
 			{
@@ -120,7 +122,7 @@ return {
 		dap.configurations.c = dap.configurations.cpp
 
 		require("dap-python").setup(
-			require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
+			-- require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
 		)
 		require("dap-python").resolve_python = function()
 			-- If a virtual environment is active, use it

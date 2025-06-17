@@ -3,7 +3,7 @@ return {
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		build = ":Copilot auth",
-		event = "BufReadPost",
+		-- event = "BufReadPost",
 		opts = {
 			suggestion = {
 				enabled = false,
@@ -26,22 +26,26 @@ return {
 			openai = {
 				endpoint = "http://localhost:1234/v1",
 				model = "qwen/qwen3-8b", -- your desired model (or use gpt-4o, etc.)
-				timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-				temperature = 0.4, -- Adjust this value as needed
-				max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+				extra_request_body = {
+					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+					temperature = 0.4, -- Adjust this value as needed
+					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+				},
 				disable_tools = { "web_search", "fetch", "git_commit" }, -- Disable unsupported tools
 				api_key_name = "",
 				--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models,
 			},
 			provider = "openai",
-			vendors = {
+			providers = {
 				math = {
 					__inherited_from = "openai",
 					endpoint = "http://localhost:1234/v1",
 					model = "mistralai/mathstral-7b-v0.1",
-					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-					temperature = 0.4, -- Adjust this value as needed
-					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+					extra_request_body = {
+						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+						temperature = 0.4, -- Adjust this value as needed
+						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+					},
 					disable_tools = true, -- Disable unsupported tools
 					api_key_name = "",
 				},
@@ -50,9 +54,11 @@ return {
 					__inherited_from = "openai",
 					endpoint = "http://localhost:1234/v1",
 					model = "meta-llama-3.1-8b-instruct",
-					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-					temperature = 0.4, -- Adjust this value as needed
-					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+					extra_request_body = {
+						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+						temperature = 0.4, -- Adjust this value as needed
+						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+					},
 					disable_tools = { "web_search", "fetch", "git_commit" }, -- Disable unsupported tools
 					api_key_name = "",
 				},
@@ -61,9 +67,11 @@ return {
 					__inherited_from = "openai",
 					endpoint = "http://localhost:1234/v1",
 					model = "deepseek/deepseek-r1-0528-qwen3-8b",
-					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-					temperature = 0.4, -- Adjust this value as needed
-					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+					extra_request_body = {
+						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+						temperature = 0.4, -- Adjust this value as needed
+						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+					},
 					disable_tools = true, -- Disable unsupported tools
 					api_key_name = "",
 				},
@@ -72,9 +80,11 @@ return {
 					__inherited_from = "openai",
 					endpoint = "http://localhost:1234/v1",
 					model = "google/gemma-3-4b",
-					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-					temperature = 0.4, -- Adjust this value as needed
-					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+					extra_request_body = {
+						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+						temperature = 0.4, -- Adjust this value as needed
+						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+					},
 					disable_tools = true, -- disable tools!
 					api_key_name = "",
 				},

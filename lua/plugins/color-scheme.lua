@@ -6,7 +6,7 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavor = "mocha",
-				transparent_background = true,
+				-- transparent_background = true,
 				integrations = {
 					gitsigns = true,
 					flash = true,
