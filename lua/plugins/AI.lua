@@ -22,41 +22,55 @@ return {
 		opts = {
 			-- add any opts here
 			-- for example
-
-			openai = {
-				endpoint = "http://localhost:1234/v1",
-				model = "qwen/qwen3-8b", -- your desired model (or use gpt-4o, etc.)
-				extra_request_body = {
-					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-					temperature = 0.4, -- Adjust this value as needed
-					max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+			input = {
+				provider = "snacks",
+				provider_opts = {
+					title = "Avante Input",
+					icon = "",
 				},
-				-- disable_tools = { "web_search", "fetch", "git_commit" }, -- Disable unsupported tools
-				disable_tools = true, -- Disable unsupported tools
-				api_key_name = "",
-				--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models,
 			},
-			provider = "openai",
-			providers = {
-				math = {
-					__inherited_from = "openai",
-					endpoint = "http://localhost:1234/v1",
-					model = "mistralai/mathstral-7b-v0.1",
-					extra_request_body = {
-						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-						temperature = 0.4, -- Adjust this value as needed
-						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+
+			selector = {
+				provider = "telescope",
+				provider_opts = {},
+			},
+
+			-- mode = "legacy",
+
+			-- openai = {
+			-- 	endpoint = "http://localhost:1234/v1",
+			-- 	model = "qwen/qwen3-8b", -- your desired model (or use gpt-4o, etc.)
+			-- 	timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+			-- 	extra_request_body = {
+			-- 		temperature = 0.4, -- Adjust this value as needed
+			-- 		max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+			-- 		reasoning_effort = "low", -- low|medium|high, only used for reasoning models,
+			-- 	},
+			-- 	disable_tools = { "fetch", "git_commit" }, -- Disable unsupported tools
+			-- 	-- disable_tools = true, -- Disable unsupported tools
+			-- 	api_key_name = "",
+			-- },
+
+			gemini = {
+				model = "gemini-2.0-flash",
+				timeout = 30000, -- Timeout in milliseconds
+				extra_request_body = {
+					generationConfig = {
+						temperature = 0.45,
 					},
-					disable_tools = true, -- Disable unsupported tools
-					api_key_name = "",
 				},
+			},
+
+			provider = "gemini",
+
+			providers = {
 
 				metallm = {
 					__inherited_from = "openai",
 					endpoint = "http://localhost:1234/v1",
 					model = "meta-llama-3.1-8b-instruct",
+					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					extra_request_body = {
-						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 						temperature = 0.4, -- Adjust this value as needed
 						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
 					},
@@ -66,30 +80,43 @@ return {
 					api_key_name = "",
 				},
 
-				deepseek = {
+				groq = {
 					__inherited_from = "openai",
-					endpoint = "http://localhost:1234/v1",
-					model = "deepseek/deepseek-r1-0528-qwen3-8b",
+					api_key_name = "GROQ_API_KEY",
+					endpoint = "https://api.groq.com/openai/v1/",
+					model = "gemma2-9b-it",
+					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					extra_request_body = {
-						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 						temperature = 0.4, -- Adjust this value as needed
-						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+						max_completion_tokens = 4096, -- Increase this to include reasoning tokens (for reasoning models)
+						-- reasoning_effort = "low", -- low|medium|high, only used for reasoning models
 					},
-					disable_tools = true, -- Disable unsupported tools
-					api_key_name = "",
+					disable_tools = true,
 				},
 
-				gemma = {
+				mistral = {
 					__inherited_from = "openai",
-					endpoint = "http://localhost:1234/v1",
-					model = "google/gemma-3-4b",
+					api_key_name = "MISTRAL_API_KEY",
+					endpoint = "https://api.mistral.ai/v1/",
+					model = "mistral-small-2503",
 					extra_request_body = {
-						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+						max_tokens = 4096, -- to avoid using max_completion_tokens
+					},
+					disable_tools = true,
+				},
+
+				openrouter = {
+					__inherited_from = "openai",
+					endpoint = "https://openrouter.ai/api/v1",
+					api_key_name = "OPENROUTER_API_KEY",
+					model = "qwen/qwen-2.5-coder-32b-instruct:free",
+					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+					extra_request_body = {
 						temperature = 0.4, -- Adjust this value as needed
 						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+						-- reasoning_effort = "low", -- low|medium|high, only used for reasoning models
 					},
-					disable_tools = true, -- disable tools!
-					api_key_name = "",
+					disable_tools = true, -- Disable unsupported tools
 				},
 			},
 		},
