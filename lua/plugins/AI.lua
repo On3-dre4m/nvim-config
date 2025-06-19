@@ -30,12 +30,12 @@ return {
 				},
 			},
 
-			selector = {
-				provider = "telescope",
-				provider_opts = {},
-			},
+			-- selector = {
+			-- 	provider = "telescope",
+			-- 	provider_opts = {},
+			-- },
 
-			-- mode = "legacy",
+			mode = "legacy",
 
 			-- openai = {
 			-- 	endpoint = "http://localhost:1234/v1",
@@ -51,19 +51,19 @@ return {
 			-- 	api_key_name = "",
 			-- },
 
-			gemini = {
-				model = "gemini-2.0-flash",
-				timeout = 30000, -- Timeout in milliseconds
-				extra_request_body = {
-					generationConfig = {
-						temperature = 0.45,
-					},
-				},
-			},
-
 			provider = "gemini",
 
 			providers = {
+
+				gemini = {
+					model = "gemini-2.0-flash",
+					timeout = 30000, -- Timeout in milliseconds
+					extra_request_body = {
+						generationConfig = {
+							temperature = 0.45,
+						},
+					},
+				},
 
 				metallm = {
 					__inherited_from = "openai",
@@ -102,7 +102,7 @@ return {
 					extra_request_body = {
 						max_tokens = 4096, -- to avoid using max_completion_tokens
 					},
-					disable_tools = true,
+					-- disable_tools = true,
 				},
 
 				openrouter = {
