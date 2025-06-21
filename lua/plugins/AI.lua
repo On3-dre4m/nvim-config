@@ -15,12 +15,38 @@ return {
 			},
 		},
 	},
+
+	{
+		"ravitemer/mcphub.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
+		config = function()
+			require("mcphub").setup()
+		end,
+	},
+
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
 		version = false, -- Never set this value to "*"! Never!
 		opts = {
 			-- add any opts here
+
+			-- system_prompt as function ensures LLM always has latest MCP server state
+			-- This is evaluated for every message, even in existing chats
+			system_prompt = function()
+				local hub = require("mcphub").get_hub_instance()
+				return hub and hub:get_active_servers_prompt() or ""
+			end,
+			-- Using function prevents requiring mcphub before it's loaded
+			custom_tools = function()
+				return {
+					require("mcphub.extensions.avante").mcp_tool(),
+				}
+			end,
+
 			-- for example
 			input = {
 				provider = "snacks",
@@ -88,21 +114,22 @@ return {
 					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					extra_request_body = {
 						temperature = 0.4, -- Adjust this value as needed
-						max_completion_tokens = 4096, -- Increase this to include reasoning tokens (for reasoning models)
+						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
 						-- reasoning_effort = "low", -- low|medium|high, only used for reasoning models
 					},
-					disable_tools = true,
+					-- disable_tools = true,
 				},
 
+				-- MISTRAL LLMs can use tools support MCP
 				mistral = {
 					__inherited_from = "openai",
 					api_key_name = "MISTRAL_API_KEY",
 					endpoint = "https://api.mistral.ai/v1/",
 					model = "mistral-small-2503",
 					extra_request_body = {
-						max_tokens = 4096, -- to avoid using max_completion_tokens
+						max_tokens = 6000, -- to avoid using max_completion_tokens
 					},
-					disable_tools = true,
+					-- disable_tools = true,
 				},
 
 				openrouter = {
