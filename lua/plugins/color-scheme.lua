@@ -65,5 +65,17 @@ return {
 
 	{
 		"xiyaowong/transparent.nvim",
+		config = function()
+			vim.keymap.set("n", "<leader>tt", function()
+				vim.cmd("TransparentToggle")
+
+				vim.defer_fn(function()
+					vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
+					vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
+					vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
+					vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#6F4B72" })
+				end, 50) -- Delay by 50ms
+			end, { silent = true, desc = "[T]oggle [T]ransparrent" })
+		end,
 	},
 }

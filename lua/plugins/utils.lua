@@ -93,9 +93,7 @@ return {
 			},
 			{
 				"<leader>ft",
-				function()
-					require("snacks").picker.todo_comments({ keywords = { "WARN", "FIX", "TODO" } })
-				end,
+				":TodoTelescope keywords=WARN,FIX,TODO<Cr>",
 				{ desc = "[F]ind [T]odo list" },
 			},
 		},

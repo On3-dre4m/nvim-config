@@ -295,6 +295,19 @@ return {
 			},
 
 			{
+				"<leader>fr",
+				function()
+					Snacks.picker.registers({
+						finder = "vim_registers",
+						format = "register",
+						preview = "preview",
+						confirm = { "copy", "close" },
+					})
+				end,
+				desc = "[F]ind [M]arks",
+			},
+
+			{
 				"<leader>fI",
 				function()
 					Snacks.picker.pickers({

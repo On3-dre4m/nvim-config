@@ -23,7 +23,7 @@ return {
 					c = { "clang_format" },
 					cpp = { "clang_format" },
 					python = { "isort", "black" },
-					markdown = { "prettierd" },
+					markdown = { "prettier" },
 					tex = { "latexindent" },
 					json = { "prettierd" },
 				},
@@ -74,7 +74,7 @@ return {
 				cpp = { "cpplint" },
 				python = { "ruff" },
 				-- tex = { "vale" },
-				-- markdown = { "vale" },
+				-- markdown = { "markdownlint-cli2" },
 			}
 			-- require("lint.linters.ruff").cmd = vim.fn.stdpath("data") .. "/mason/bin/ruff"
 			-- require("lint.linters.vale").cmd = vim.fn.stdpath("data") .. "/mason/bin/vale"

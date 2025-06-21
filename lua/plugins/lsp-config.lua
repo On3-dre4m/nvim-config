@@ -84,6 +84,11 @@ return {
 
 			vim.lsp.enable("clangd")
 			vim.lsp.config("clangd", {
+				settings = {
+					telemetry = {
+						telemetryLevel = "error",
+					},
+				},
 				cmd = {
 					"clangd",
 				},
@@ -110,6 +115,7 @@ return {
 
 			vim.lsp.enable("harper_ls")
 			vim.lsp.config("harper_ls", {
+				capabilities = capabilities,
 				filetypes = { "markdown" },
 				settings = {
 					["harper-ls"] = {
@@ -172,7 +178,14 @@ return {
 
 			vim.lsp.enable("markdown_oxide")
 			vim.lsp.config("markdown_oxide", {
-				capabilities = capabilities,
+				cmd = { vim.fn.stdpath("data") .. "/mason/bin/markdown-oxide" },
+				capabilities = vim.tbl_deep_extend("force", capabilities, {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
+						},
+					},
+				}),
 			})
 
 			--Set keymap for hover function

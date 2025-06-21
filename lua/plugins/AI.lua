@@ -3,7 +3,7 @@ return {
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		build = ":Copilot auth",
-		-- event = "BufReadPost",
+		event = "BufReadPost",
 		opts = {
 			suggestion = {
 				enabled = false,
@@ -102,14 +102,30 @@ return {
 					extra_request_body = {
 						max_tokens = 4096, -- to avoid using max_completion_tokens
 					},
-					-- disable_tools = true,
+					disable_tools = true,
 				},
 
 				openrouter = {
 					__inherited_from = "openai",
 					endpoint = "https://openrouter.ai/api/v1",
 					api_key_name = "OPENROUTER_API_KEY",
-					model = "qwen/qwen-2.5-coder-32b-instruct:free",
+					-- model = "qwen/qwen-2.5-coder-32b-instruct:free",
+					model = "mistralai/devstral-small:free",
+					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+					extra_request_body = {
+						temperature = 0.4, -- Adjust this value as needed
+						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
+						-- reasoning_effort = "low", -- low|medium|high, only used for reasoning models
+					},
+					disable_tools = true, -- Disable unsupported tools
+				},
+
+				deepSeek = {
+					__inherited_from = "openai",
+					endpoint = "https://openrouter.ai/api/v1",
+					api_key_name = "OPENROUTER_API_KEY",
+					-- model = "qwen/qwen-2.5-coder-32b-instruct:free",
+					model = "deepseek/deepseek-r1:free",
 					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					extra_request_body = {
 						temperature = 0.4, -- Adjust this value as needed

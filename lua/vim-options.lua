@@ -77,7 +77,7 @@ vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "markdown",
 	callback = function()
-		vim.opt.conceallevel = 2
+		vim.opt.conceallevel = 0
 	end,
 })
 

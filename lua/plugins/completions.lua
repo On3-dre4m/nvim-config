@@ -26,7 +26,7 @@ return {
 		},
 
 		-- use a release tag to download pre-built binaries
-		version = "1.*",
+		version = "1.4.1",
 
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
@@ -89,7 +89,17 @@ return {
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lsp", "path", "snippets", "copilot", "buffer", "dictionary", "emoji", "avante" },
+				default = {
+					"lsp",
+					"path",
+					"snippets",
+					"copilot",
+					"buffer",
+					"dictionary",
+					"emoji",
+					"avante",
+				},
+
 				providers = {
 					copilot = {
 						name = "copilot",
@@ -115,6 +125,7 @@ return {
 						-- 3 is recommended
 
 						min_keyword_length = 3,
+						-- max_items = 8,
 
 						opts = {
 							-- options for blink-cmp-dictionary
@@ -148,6 +159,16 @@ return {
 						opts = {
 							-- options for blink-cmp-avante
 						},
+					},
+				},
+
+				per_filetype = {
+					markdown = {
+						"lsp",
+						"path",
+						"snippets",
+						"dictionary",
+						"emoji",
 					},
 				},
 			},
