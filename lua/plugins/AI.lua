@@ -3,7 +3,7 @@ return {
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		build = ":Copilot auth",
-		event = "BufReadPost",
+		-- event = "BufReadPost",
 		opts = {
 			suggestion = {
 				enabled = false,
@@ -23,7 +23,13 @@ return {
 		},
 		build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
 		config = function()
-			require("mcphub").setup()
+			require("mcphub").setup({
+				extensions = {
+					avante = {
+						make_slash_commands = true, -- make /slash commands from MCP server prompts
+					},
+				},
+			})
 		end,
 	},
 
@@ -63,20 +69,6 @@ return {
 
 			mode = "legacy",
 
-			-- openai = {
-			-- 	endpoint = "http://localhost:1234/v1",
-			-- 	model = "qwen/qwen3-8b", -- your desired model (or use gpt-4o, etc.)
-			-- 	timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-			-- 	extra_request_body = {
-			-- 		temperature = 0.4, -- Adjust this value as needed
-			-- 		max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
-			-- 		reasoning_effort = "low", -- low|medium|high, only used for reasoning models,
-			-- 	},
-			-- 	disable_tools = { "fetch", "git_commit" }, -- Disable unsupported tools
-			-- 	-- disable_tools = true, -- Disable unsupported tools
-			-- 	api_key_name = "",
-			-- },
-
 			provider = "gemini",
 
 			providers = {
@@ -110,7 +102,7 @@ return {
 					__inherited_from = "openai",
 					api_key_name = "GROQ_API_KEY",
 					endpoint = "https://api.groq.com/openai/v1/",
-					model = "gemma2-9b-it",
+					model = "llama-3.3-70b-versatile",
 					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					extra_request_body = {
 						temperature = 0.4, -- Adjust this value as needed
@@ -120,7 +112,7 @@ return {
 					-- disable_tools = true,
 				},
 
-				-- MISTRAL LLMs can use tools support MCP
+				--MISTRAL LLMs can use tools support MCP
 				mistral = {
 					__inherited_from = "openai",
 					api_key_name = "MISTRAL_API_KEY",
@@ -132,22 +124,24 @@ return {
 					-- disable_tools = true,
 				},
 
-				openrouter = {
+				--Deep Seek chat V3 can use MCP and native Avante tools
+				deepSeekV3 = {
 					__inherited_from = "openai",
 					endpoint = "https://openrouter.ai/api/v1",
 					api_key_name = "OPENROUTER_API_KEY",
 					-- model = "qwen/qwen-2.5-coder-32b-instruct:free",
-					model = "mistralai/devstral-small:free",
+					model = "deepseek/deepseek-chat-v3-0324:free",
 					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					extra_request_body = {
 						temperature = 0.4, -- Adjust this value as needed
 						max_completion_tokens = 6000, -- Increase this to include reasoning tokens (for reasoning models)
 						-- reasoning_effort = "low", -- low|medium|high, only used for reasoning models
 					},
-					disable_tools = true, -- Disable unsupported tools
+					-- disable_tools = true, -- Disable unsupported tools
 				},
 
-				deepSeek = {
+				--DeepSeek R1 can not use MCP or Avante native tools
+				deepSeekR1 = {
 					__inherited_from = "openai",
 					endpoint = "https://openrouter.ai/api/v1",
 					api_key_name = "OPENROUTER_API_KEY",
