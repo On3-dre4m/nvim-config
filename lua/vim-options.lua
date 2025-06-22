@@ -7,6 +7,7 @@ vim.g.maplocalleader = " "
 
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.o.cursorline = true
 vim.o.swapfile = false -- creates a swapfile
 vim.o.smartindent = true -- make indenting smarter again
 vim.o.numberwidth = 4 -- set number column width to 2 {default 4}
@@ -70,9 +71,9 @@ vim.keymap.set("n", "<leader>cs", function()
 	vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
 	vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
 end, { desc = "Highlight current cursor" })
-vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
-vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
+-- vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
+-- vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
+-- vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "markdown",

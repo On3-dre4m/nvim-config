@@ -1,6 +1,6 @@
 return {
 	{
-		"epwalsh/obsidian.nvim",
+		"obsidian-nvim/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
 		ft = "markdown",
@@ -62,6 +62,26 @@ return {
 				img_folder = "1. RESOURCE/Pics",
 			},
 			ui = { enable = false },
+
+			completion = {
+				nvim_cmp = false,
+				blink = true,
+				min_chars = 2,
+				create_new = false,
+			},
+
+			picker = {
+				name = "snacks.pick",
+			},
+
+			backlinks = {
+				parse_headers = false,
+			},
+
+			statusline = {
+				enabled = true,
+				format = "{{properties}} properties {{backlinks}} backlinks {{words}} words {{chars}} chars",
+			},
 
 			wiki_link_func = "use_alias_only",
 

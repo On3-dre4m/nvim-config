@@ -12,15 +12,20 @@ return {
 					flash = true,
 					blink_cmp = true,
 				},
+				highlight_overrides = {
+					all = function(colors)
+						return {
+							LineNrAbove = { fg = "#808080" },
+							CursorLineNr = { fg = "#17fff7" },
+							LineNrBelow = { fg = "#808080" },
+							ColorColumn = { bg = "#6F4B72" }, -- Highlight the color column
+						}
+					end,
+				},
 			})
 			vim.cmd.colorscheme("catppuccin")
-			-- Delay applying highlights slightly to ensure they take effect
-			vim.defer_fn(function()
-				vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
-				vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
-				vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
-			end, 50) -- Delay by 50ms
 
+			-- Delay applying highlights slightly to ensure they take effect
 			vim.keymap.set("n", "<leader>T", function()
 				local cat = require("catppuccin")
 				cat.options.transparent_background = not cat.options.transparent_background
@@ -41,26 +46,16 @@ return {
 					sidebars = "dark",
 					floats = "dark",
 				},
+
+				on_highlights = function(hl, c)
+					hl.LineNrAbove = { fg = "#808080" }
+					hl.CursorLineNr = { fg = "#17fff7" }
+					hl.LineNrBelow = { fg = "#808080" }
+					hl.ColorColumn = { bg = "#6F4B72" } -- Highlight the color column
+					hl.BlinkCmpMenuSelection = { bg = "#45475b" }
+				end,
 			})
-
-			vim.defer_fn(function()
-				vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
-				vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
-				vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
-			end, 50) -- Delay by 50ms
 		end,
-	},
-
-	{
-		"ellisonleao/gruvbox.nvim",
-		priority = 1000,
-		config = function()
-			require("gruvbox").setup({})
-		end,
-	},
-
-	{
-		"rebelot/kanagawa.nvim",
 	},
 
 	{
@@ -68,13 +63,6 @@ return {
 		config = function()
 			vim.keymap.set("n", "<leader>tt", function()
 				vim.cmd("TransparentToggle")
-
-				vim.defer_fn(function()
-					vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
-					vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
-					vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
-					vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#6F4B72" })
-				end, 50) -- Delay by 50ms
 			end, { silent = true, desc = "[T]oggle [T]ransparrent" })
 		end,
 	},
