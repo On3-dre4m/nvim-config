@@ -117,7 +117,7 @@ return {
 					__inherited_from = "openai",
 					api_key_name = "MISTRAL_API_KEY",
 					endpoint = "https://api.mistral.ai/v1/",
-					model = "mistral-small-2503",
+					model = "codestral-2501",
 					extra_request_body = {
 						max_tokens = 6000, -- to avoid using max_completion_tokens
 					},
