@@ -1,8 +1,45 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		dependencies = {
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+		},
 		config = function()
 			require("mason").setup()
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					-- Language Server Protocol
+					"lua_ls",
+					"clangd",
+					"pyright",
+					"harper_ls",
+					"texlab",
+					"markdown_oxide",
+					"ltex_plus",
+
+					-- Debug Adapter Protocol
+					"cortex-debug",
+					"cpptools",
+					"debugpy",
+
+					-- Linter
+					"cpplint",
+					"markdownlint-cli2",
+					"mypy",
+					"pylint",
+
+					-- Formatter
+					"black",
+					"clang-format",
+					"isort",
+					"latexindent",
+					"markdown-toc",
+					"markdownlint-cli2",
+					"prettier",
+					"prettierd",
+					"stylua",
+				},
+			})
 		end,
 	},
 	{
