@@ -9,13 +9,13 @@ return {
 			require("mason-tool-installer").setup({
 				ensure_installed = {
 					-- Language Server Protocol
-					"lua_ls",
+					"lua-language-server",
 					"clangd",
 					"pyright",
-					"harper_ls",
+					"harper-ls",
 					"texlab",
-					"markdown_oxide",
-					"ltex_plus",
+					"markdown-oxide",
+					"ltex-ls-plus",
 
 					-- Debug Adapter Protocol
 					"cortex-debug",
