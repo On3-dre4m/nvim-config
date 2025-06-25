@@ -13,18 +13,14 @@ return {
 					"clangd",
 					"pyright",
 					"harper-ls",
-					"texlab",
 					"markdown-oxide",
-					"ltex-ls-plus",
 
 					-- Debug Adapter Protocol
 					"cortex-debug",
 					"cpptools",
-					"debugpy",
 
 					-- Linter
 					"cpplint",
-					"markdownlint-cli2",
 					"mypy",
 					"pylint",
 
@@ -32,9 +28,6 @@ return {
 					"black",
 					"clang-format",
 					"isort",
-					"latexindent",
-					"markdown-toc",
-					"markdownlint-cli2",
 					"prettier",
 					"prettierd",
 					"stylua",
@@ -51,9 +44,7 @@ return {
 					"clangd",
 					"pyright",
 					"harper_ls",
-					"texlab",
 					"markdown_oxide",
-					"ltex_plus",
 				},
 			})
 		end,
@@ -133,8 +124,8 @@ return {
 				capabilities = capabilities,
 			})
 
-			vim.lsp.enable("csharp_ls")
-			vim.lsp.config("csharp_ls", { capabilities = capabilities })
+			-- vim.lsp.enable("csharp_ls")
+			-- vim.lsp.config("csharp_ls", { capabilities = capabilities })
 
 			vim.lsp.enable("pyright")
 			vim.lsp.config("pyright", {
@@ -174,44 +165,44 @@ return {
 				},
 			})
 
-			vim.lsp.enable("ltex_plus")
-			vim.lsp.config("ltex_plus", {
-				capabilities = capabilities,
-				on_attach = function(client, bufnr)
-					-- rest of your on_attach process.
-					require("ltex_extra").setup({})
-				end,
-				cmd = { "ltex-ls-plus" },
-				filetypes = {
-					"tex",
-					"bib",
-					"context",
-					"plaintex",
-				},
-				settings = {
-					ltex = {
-						enabled = { "bib", "context", "plaintex", "tex", "latex" },
-						language = "en-US",
-						disabledRules = {
-							-- "UPPERCASE_SENTENCE_START", -- Disable specific rules if needed
-							["en-US"] = {
-								"MORFOLOGIK_RULE_EN_US",
-								"LC_AFTER_PERIOD",
-								"EN_MULTITOKEN_SPELLING_TWO",
-								"ENGLISH_WORD_REPEAT_BEGINNING_RULE",
-								"COMMA_PARENTHESIS_WHITESPACE",
-								"INTERJECTIONS_PUNCTUATION",
-							},
-						},
-						hiddenFalsePositives = { ["en-US"] = {} },
-					},
-				},
-			})
+			-- vim.lsp.enable("ltex_plus")
+			-- vim.lsp.config("ltex_plus", {
+			-- 	capabilities = capabilities,
+			-- 	on_attach = function(client, bufnr)
+			-- 		-- rest of your on_attach process.
+			-- 		require("ltex_extra").setup({})
+			-- 	end,
+			-- 	cmd = { "ltex-ls-plus" },
+			-- 	filetypes = {
+			-- 		"tex",
+			-- 		"bib",
+			-- 		"context",
+			-- 		"plaintex",
+			-- 	},
+			-- 	settings = {
+			-- 		ltex = {
+			-- 			enabled = { "bib", "context", "plaintex", "tex", "latex" },
+			-- 			language = "en-US",
+			-- 			disabledRules = {
+			-- 				-- "UPPERCASE_SENTENCE_START", -- Disable specific rules if needed
+			-- 				["en-US"] = {
+			-- 					"MORFOLOGIK_RULE_EN_US",
+			-- 					"LC_AFTER_PERIOD",
+			-- 					"EN_MULTITOKEN_SPELLING_TWO",
+			-- 					"ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+			-- 					"COMMA_PARENTHESIS_WHITESPACE",
+			-- 					"INTERJECTIONS_PUNCTUATION",
+			-- 				},
+			-- 			},
+			-- 			hiddenFalsePositives = { ["en-US"] = {} },
+			-- 		},
+			-- 	},
+			-- })
 
-			vim.lsp.enable("texlab")
-			vim.lsp.config("texlab", {
-				capabilities = capabilities,
-			})
+			-- vim.lsp.enable("texlab")
+			-- vim.lsp.config("texlab", {
+			-- 	capabilities = capabilities,
+			-- })
 
 			vim.lsp.enable("markdown_oxide")
 			vim.lsp.config("markdown_oxide", {

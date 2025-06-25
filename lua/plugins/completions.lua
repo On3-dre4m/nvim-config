@@ -93,7 +93,7 @@ return {
 					"lsp",
 					"path",
 					"snippets",
-					"copilot",
+					-- "copilot",
 					"buffer",
 					"dictionary",
 					"emoji",
@@ -101,14 +101,14 @@ return {
 				},
 
 				providers = {
-					copilot = {
-						name = "copilot",
-						module = "blink-cmp-copilot",
-
-						score_offset = -10,
-
-						async = true,
-					},
+					-- copilot = {
+					-- 	name = "copilot",
+					-- 	module = "blink-cmp-copilot",
+					--
+					-- 	score_offset = -10,
+					--
+					-- 	async = true,
+					-- },
 					cmdline = {
 						min_keyword_length = function(ctx)
 							-- when typing a command, only show when the keyword is 3 characters or longer

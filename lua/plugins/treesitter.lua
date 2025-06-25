@@ -9,7 +9,6 @@ return {
 
 				ensure_installed = {
 					"lua",
-					"c_sharp",
 					"c",
 					"cpp",
 					"python",

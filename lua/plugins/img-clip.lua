@@ -6,10 +6,12 @@ return {
 		opts = {
 			default = {
 				use_absolute_path = false, ---@type boolean
+				relative_to_current_file = false,
 
-				dir_path = function()
-					return vim.fn.getcwd() .. "/1. RESOURCE/Pics"
-				end,
+				-- dir_path = function()
+				-- 	return vim.fn.getcwd() .. ""
+				-- end,
+				dir_path = "1. RESOURCE/Pics",
 				extension = "avif", ---@type string
 				process_cmd = "convert - -quality 75 avif:-", ---@type string
 				file_name = "%Y-%m-%d-%H-%M-%S",
