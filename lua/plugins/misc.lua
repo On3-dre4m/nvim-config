@@ -4,6 +4,16 @@ return {
 		-- Hints keybinds
 		"folke/which-key.nvim",
 		event = "VeryLazy",
+		config = function()
+			local wk = require("which-key")
+			wk.add({
+
+				{ "<leader>f", group = "Find Function" },
+				{ "<leader>g", group = "Git cmd" },
+				{ "<leader>l", group = "Buffer Navigation" },
+				{ "<leader>x", group = "Diagnostic View" },
+			})
+		end,
 		keys = {
 			{
 				"<leader>?",
