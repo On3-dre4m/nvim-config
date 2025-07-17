@@ -72,6 +72,7 @@ return {
 			lint.linters_by_ft = {
 				c = { "cpplint" },
 				cpp = { "cpplint" },
+				cmake = { "cmakelint" },
 				python = { "ruff" },
 				-- tex = { "vale" },
 				-- markdown = { "markdownlint-cli2" },
@@ -81,6 +82,12 @@ return {
 
 			require("lint").linters.cpplint.args = {
 				"--filter=-build/header_guard,-build/include,-build/include_order,-build/include_subdir,-build/include_what_you_use,-legal/copyright,-whitespace/blank_line,-whitespace/parens,-whitespace/comma,-whitespace/semicolon,-whitespace/line_length,-whitespace/braces,-whitespace/indent,-whitespace/operators,-whitespace/comments,-whitespace/tab,-readibility/alt_tokens,-readability/multiline_comment",
+			}
+
+			require("lint").linters.cmakelint.args = {
+				"--quiet",
+				-- <- add new parameters here
+				"--linelength=90",
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

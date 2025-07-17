@@ -69,7 +69,7 @@ return {
 
 			mode = "legacy",
 
-			provider = "gemini",
+			provider = "deepSeekV3",
 
 			providers = {
 

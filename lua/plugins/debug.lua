@@ -82,7 +82,7 @@ return {
 
 			-- Configure DAP for STM32 with GDB and OpenOCD
 			{
-				name = "Example debugging with OpenOCD",
+				name = "Debugging with OpenOCD",
 				type = "cortex-debug",
 				request = "launch",
 				servertype = "openocd",
@@ -137,8 +137,8 @@ return {
 		require("mason-nvim-dap").setup({
 			-- Makes a best effort to setup the various debuggers with
 			-- reasonable debug configurations
-			automatic_setup = true,
-			automatic_installation = true,
+			automatic_setup = false,
+			automatic_installation = false,
 
 			-- You can provide additional configuration to the handlers,
 			-- see mason-nvim-dap README for more information
@@ -164,20 +164,9 @@ return {
 		vim.keymap.set("n", "<leader>B", function()
 			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 		end, { desc = "Debug: Set Breakpoint" })
-		vim.keymap.set({ "n", "v" }, "<leader>dh", function()
-			require("dap.ui.widgets").hover()
-		end, { desc = "Debug: Hover" })
-		vim.keymap.set({ "n", "v" }, "<leader>dp", function()
-			require("dap.ui.widgets").preview()
+		vim.keymap.set({ "n", "v" }, "<leader>de", function()
+			require("dapui").eval()
 		end, { desc = "Debug: Preview" })
-		vim.keymap.set("n", "<leader>df", function()
-			local widgets = require("dap.ui.widgets")
-			widgets.centered_float(widgets.frames)
-		end, { desc = "Debug: Frames" })
-		vim.keymap.set("n", "<leader>ds", function()
-			local widgets = require("dap.ui.widgets")
-			widgets.centered_float(widgets.scopes)
-		end, { desc = "Debug: Scopes" })
 		vim.keymap.set("n", "<Leader>dr", dap.repl.open, { desc = "Debug Repl Open" })
 
 		-- Dap UI setup
@@ -188,6 +177,8 @@ return {
 			--    Don't feel like these are good choices.
 			icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
 			controls = {
+				element = "repl",
+				enabled = true,
 				icons = {
 					play = "▶",
 					step_into = "⏎",

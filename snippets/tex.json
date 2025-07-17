@@ -37,6 +37,8 @@
       "",
       "",
       "\\renewcommand{\\contentsname}{TABLE OF CONTENTS}",
+      "\\renewcommand{\\listfigurename}{LIST OF FIGURES}",
+      "\\renewcommand{\\listtablename}{LIST OF TABLES}",
       "\\renewcommand{\\figurename}{\\fontsize{12pt}{0pt}\\selectfont \\bfseries Figure} % Modify the desire name for FIGURE",
       "\\renewcommand{\\thefigure}{\\thesection.\\arabic{figure}}",
       "\\usepackage[font=bf]{caption}",
@@ -62,9 +64,10 @@
       "\\centering",
       "\\includegraphics[width=${1:10.09}cm,height=${2:11.02}cm]{Img/${3:name}.${4:png}}",
       "\\caption{\\fontsize{${5:12}pt}{${6:0}pt}\\selectfont ${7}}",
+      "\\label{${8}}",
       "\\end{figure}",
       "",
-      "${8}"
+      "${9}"
     ]
   },
   "Table of Contents": {

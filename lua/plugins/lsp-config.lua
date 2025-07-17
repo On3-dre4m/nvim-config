@@ -133,6 +133,13 @@ return {
 				capabilities = capabilities,
 			})
 
+			vim.lsp.enable("cmake")
+			vim.lsp.config("cmake", {
+				cmd = { vim.fn.stdpath("data") .. "/mason/bin/cmake-language-server" },
+				init_options = {},
+				capabilities = capabilities,
+			})
+
 			vim.lsp.enable("csharp_ls")
 			vim.lsp.config("csharp_ls", { capabilities = capabilities })
 
