@@ -29,8 +29,8 @@ SpacesInLineCommentPrefix:
 SpacesBeforeTrailingComments: 5  
 
 # Make the address symbol & align to the [Left|Middle|Right] of datatype
-
 ReferenceAlignment: Left
+PointerAlignment: Left
 
 SpaceAfterCStyleCast: false
 SpaceAfterOperatorKeyword: false

@@ -40,7 +40,7 @@ vim.opt.termguicolors = true
 vim.cmd("filetype plugin indent on")
 --
 -- -- Enable syntax highlighting
-vim.cmd("syntax enable")
+vim.cmd("syntax on")
 
 vim.g.tex_IgnoredWarnings = table.concat({
 	"Underfull",
@@ -70,6 +70,7 @@ vim.keymap.set("n", "<leader>cs", function()
 	vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
 	vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
 	vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#808080", bold = true })
+	vim.api.nvim_set_hl(0, "@markup.raw.block.markdown", { bg = "#000000" })
 end, { desc = "Highlight current cursor" })
 -- vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#808080", bold = true })
 -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff", bg = "#616360" }) -- Highlight other line numbers
