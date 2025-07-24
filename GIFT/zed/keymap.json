@@ -1,0 +1,100 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "": "terminal_panel::ToggleFocus",
+      "ctrl-`": "workspace::ToggleBottomDock"
+    }
+  },
+
+  // Bindings for accepting edit predictions
+  //
+  // alt-l is provided as an alternative to tab/alt-tab. and will be displayed in the UI. This is
+  // because alt-tab may not be available, as it is often used for window switching.
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "alt-tab": "editor::AcceptEditPrediction",
+      "alt-y": "editor::AcceptEditPrediction",
+      "tab": "editor::AcceptEditPrediction",
+      "alt-right": "editor::AcceptPartialEditPrediction"
+    }
+  },
+
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "g s": "outline::Toggle",
+      "g d": "editor::OpenExcerpts",
+      "g c": ["editor::ToggleComments", { "advance_downwards": false }]
+    }
+  },
+
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {}
+  },
+
+  {
+    "context": "vim_mode == insert || Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "ctrl-y": "editor::ConfirmCompletion",
+      "tab": null,
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious"
+    }
+  },
+
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work only in normal mode
+      // Window movement bindings
+      // Ctrl jklk to move between panes
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+
+      // +LSP
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+      "space g d": "editor::GoToDefinitionSplit",
+      "space g i": "editor::GoToImplementationSplit",
+      "space g t": "editor::GoToTypeDefinitionSplit",
+      "space g r": "editor::FindAllReferences",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+
+      // Close active panel
+      "shift-q": "pane::CloseActiveItem",
+      "ctrl-q": "pane::CloseActiveItem",
+      "space b d": "pane::CloseActiveItem",
+
+      // Save file
+      "ctrl-s": "workspace::Save",
+      // File finder
+      "space f f": "file_finder::Toggle",
+      // Project search
+      "space f g": "pane::DeploySearch",
+
+      "space f s": "project_symbols::Toggle",
+      "space p e": "diagnostics::Deploy" // Zed specific
+    }
+  }
+]

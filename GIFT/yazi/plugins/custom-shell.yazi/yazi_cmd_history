@@ -1,0 +1,3 @@
+bash -ic 'touch hehe.txt;exit'
+bash -ic 'nemo .;exit'
+bash -ic 'mkdir Python Algorithm Linux;exit'
